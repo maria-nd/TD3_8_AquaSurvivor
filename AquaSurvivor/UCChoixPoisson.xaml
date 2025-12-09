@@ -7,11 +7,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Canvas>
-        <RadioButton x:Name="choixp" Width="142" Height="161" Grid.Row="1" Canvas.Left="287" Canvas.Top="42" >
-
+        <RadioButton x:Name="choixp" Width="164" Height="102" Grid.Row="1" Canvas.Left="46" Canvas.Top="25" >
+            <RadioButton.Content>
+                <Image Height="80" Source="/img/Poissons/imgPoisson1Droite.png" Stretch="Fill" Width="112"/>
+            </RadioButton.Content>
         </RadioButton>
-        <RadioButton x:Name="po" Width="135" Height="156" Grid.Row="1" Canvas.Left="53" Canvas.Top="47" >
-
+        <RadioButton x:Name="po" Width="138" Height="85" Grid.Row="1" Canvas.Left="297" Canvas.Top="25" >
+            <RadioButton.Content>
+                <Image Height="80" Source="/img/Poissons/imgPoisson1Droite.png" Stretch="Fill" Width="112"/>
+            </RadioButton.Content>
         </RadioButton>
+
     </Canvas>
 </UserControl>
