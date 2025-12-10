@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace AquaSurvivor
 {
     /// <summary>
-    /// Logique d'interaction pour UCNiveauDifficulte.xaml
+    /// Logique d'interaction pour NiveauDifficulte.xaml
     /// </summary>
-    public partial class UCNiveauDifficulte : UserControl
+    public partial class NiveauDifficulte : Window
     {
-        public UCNiveauDifficulte()
+        public NiveauDifficulte()
         {
             InitializeComponent();
         }

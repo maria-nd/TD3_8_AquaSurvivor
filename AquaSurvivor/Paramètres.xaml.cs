@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace AquaSurvivor
 {
     /// <summary>
-    /// Logique d'interaction pour UCParametres.xaml
+    /// Logique d'interaction pour Paramètres.xaml
     /// </summary>
-    public partial class UCParametres : UserControl
+    public partial class Paramètres : Window
     {
-        public UCParametres()
+        public Paramètres()
         {
             InitializeComponent();
         }
