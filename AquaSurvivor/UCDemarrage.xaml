@@ -7,7 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Button Content="PLAY" Margin="318,267,318,96" FontWeight="Bold" FontSize="24"/>
+        <Button x:Name="but_Play" Content="PLAY" Margin="280,269,280,54" FontWeight="Bold" FontSize="72"/>
+        <Label Content="image de notre logo a mettre" HorizontalAlignment="Center" Height="122" Margin="0,77,0,0" VerticalAlignment="Top" Width="568" Background="#FF4CB3B1"/>
 
     </Grid>
 </UserControl>

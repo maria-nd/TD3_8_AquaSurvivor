@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AquaSurvivor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="AquaSurvivor" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush x:Name="img_FondDeBase" ImageSource="/img/Fonds/imgGeneral.png"/>
+    </Window.Background>
+    <ContentControl x:Name="ZoneJeu" />
 </Window>
