@@ -10,7 +10,7 @@
         <Label x:Name="labBienvenue" Content="BIENVENUE" HorizontalAlignment="Center" VerticalAlignment="Top" Height="100" Width="800" Background="#FF4AABA9" HorizontalContentAlignment="Center" FontSize="72" FontWeight="Bold"/>
         <Label x:Name="labRegleJeu" Content="REGLES" HorizontalAlignment="Left" Margin="70,139,0,0" VerticalAlignment="Top" Height="36" Width="147" Background="#FF65B5B0"/>
         <Label x:Name="labRegleTexte" Content="texte a mettre" HorizontalAlignment="Center" Margin="0,199,0,0" VerticalAlignment="Top" Height="173" Width="660" Background="#FF76BFC1"/>
-        <Button x:Name="but_Continuer" Content="CONTINUER" HorizontalAlignment="Left" Margin="584,390,0,0" VerticalAlignment="Top" FontWeight="Bold" BorderBrush="Black" BorderThickness="5,5,5,5" Background="#FF76BFC1" Height="50" Width="146"/>
+        <Button x:Name="but_Continuer" Content="CONTINUER" HorizontalAlignment="Left" Margin="584,390,0,0" VerticalAlignment="Top" FontWeight="Bold" BorderBrush="Black" BorderThickness="5,5,5,5" Background="#FF76BFC1" Height="50" Width="146" Click="but_Continuer_Click"/>
 
     </Grid>
 </UserControl>
