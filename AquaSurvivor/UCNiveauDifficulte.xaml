@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="AquaSurvivor.UCNiveauDifficulte"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AquaSurvivor"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Label x:Name="labChoixDifficulte" Content="Choisissez Votre difficulté" HorizontalAlignment="Center" Height="94" Width="800" FontSize="22" HorizontalContentAlignment="Center" Background="#FF6AA798" FontWeight="Bold" VerticalContentAlignment="Center" VerticalAlignment="Top"/>
+       
+        <Button x:Name="labFacile" Content="FACILE" HorizontalAlignment="Left" Margin="60,225,0,0" VerticalAlignment="Top" Height="78" Width="183" FontSize="18" FontWeight="Bold" Click="labFacile_Click"/>
+        <Button x:Name="labMoyen" Content="MOYEN" HorizontalAlignment="Center" Margin="0,225,0,0" VerticalAlignment="Top" Height="78" Width="183" FontWeight="Bold" FontSize="18" Click="labMoyen_Click"/>
+        <Button x:Name="labDifficile" Content="DIFFICILE" HorizontalAlignment="Left" Margin="557,225,0,0" VerticalAlignment="Top" Height="78" Width="183" FontSize="18" FontWeight="Bold" Click="labDifficile_Click"/>
+    </Grid>
+</UserControl>

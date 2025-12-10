@@ -16,18 +16,33 @@ using System.Windows.Shapes;
 namespace AquaSurvivor
 {
     /// <summary>
-    /// Logique d'interaction pour UCDemarrage.xaml
+    /// Logique d'interaction pour UCNiveauDifficulte.xaml
     /// </summary>
-    public partial class UCDemarrage : UserControl
+    public partial class UCNiveauDifficulte : UserControl
     {
-        public UCDemarrage()
+        public UCNiveauDifficulte()
         {
             InitializeComponent();
         }
 
-        public void but_Play_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+
+        }
+
+        private void labFacile_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void labMoyen_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void labDifficile_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

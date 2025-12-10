@@ -24,5 +24,15 @@ namespace AquaSurvivor
         {
             InitializeComponent();
         }
+
+        private void butRetenter_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void butQuitter_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

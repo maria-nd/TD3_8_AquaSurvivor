@@ -19,6 +19,23 @@ namespace AquaSurvivor
         public MainWindow()
         {
             InitializeComponent();
+            AfficheDemarrage();
+
+        }
+        private void AfficheDemarrage()
+        {
+            // crée et charge l'écran de démarrage
+            UCDemarrage uc = new UCDemarrage();
+
+            // associe l'écran au conteneur
+            ZoneJeu.Content = uc;
+            uc.but_Play.Click += AfficherReglesJeu;
+        }
+
+        private void AfficherReglesJeu(object sender, RoutedEventArgs e)
+        {
+            UCReglesJeu uc = new UCReglesJeu();
+            ZoneJeu.Content = uc;
         }
     }
 }
