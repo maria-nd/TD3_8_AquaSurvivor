@@ -36,6 +36,20 @@ namespace AquaSurvivor
         {
             UCReglesJeu uc = new UCReglesJeu();
             ZoneJeu.Content = uc;
+            uc.but_Continuer.Click += AfficherChoixPoisson;
+
+        }
+
+        private void AfficherChoixPoisson(object sender, RoutedEventArgs e)
+        {
+            UCChoixPoisson uc = new UCChoixPoisson();
+            ZoneJeu.Content = uc;
+            uc.butSuivant.Click += AfficherNiveauDifficulte;
+        }
+
+        private void AfficherNiveauDifficulte(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

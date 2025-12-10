@@ -25,9 +25,55 @@ namespace AquaSurvivor
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void butSuivant_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void rb1_Click(object sender, RoutedEventArgs e)
+        {
+            butSuivant.IsEnabled = true;
+
+        }
+
+        private void rb2_Click(object sender, RoutedEventArgs e)
+        {
+            butSuivant.IsEnabled = true;
+        }
+
+        private void rb3_Click(object sender, RoutedEventArgs e)
+        {
+            butSuivant.IsEnabled = true;
+        }
+
+        private void rb4_Click(object sender, RoutedEventArgs e)
+        {
+            butSuivant.IsEnabled = true;
+        }
+
+        private void rb5_Click(object sender, RoutedEventArgs e)
+        {
+            butSuivant.IsEnabled = true;
+        }
+
+        private void rb6_Click(object sender, RoutedEventArgs e)
+        {
+            butSuivant.IsEnabled = true;
+        }
+
+        private void rb7_Click(object sender, RoutedEventArgs e)
+        {
+            butSuivant.IsEnabled = true;
+        }
+
+        private void rb8_Click(object sender, RoutedEventArgs e)
+        {
+            butSuivant.IsEnabled = true;
+        }
+
+        private void rb9_Click(object sender, RoutedEventArgs e)
+        {
+            butSuivant.IsEnabled = true;
         }
     }
 }

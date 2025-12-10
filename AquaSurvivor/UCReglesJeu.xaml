@@ -34,25 +34,11 @@
             <Image Margin="78,49,38,156" Source="/img/Nourriture/imgCrevette.png" Stretch="Fill"/>
             <Image Margin="33,43,78,150" Source="/img/Nourriture/imgPoissonJaune.png" Stretch="Fill"/>
             <Image Margin="17,47,125,171" Source="/img/Nourriture/imgSardine.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="139.305"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Image.RenderTransform>
+                
             </Image>
             <Image Margin="126,74,-28,103" Source="/img/Déchets/imgBouteille.png" Stretch="Fill"/>
             <Image Margin="104,98,36,117" Source="/img/Déchets/imgCigare.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="47.992"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Image.RenderTransform>
+          
             </Image>
             <Image Margin="81,97,66,116" Source="/img/Déchets/imgCigarette.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>

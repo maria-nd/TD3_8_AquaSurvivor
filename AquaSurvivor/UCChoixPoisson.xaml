@@ -7,44 +7,44 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid x:Name="GridChoixPoisson">
-        <RadioButton x:Name="rb1" Margin="137,79,533,276" >
+        <RadioButton x:Name="rb1" Margin="137,79,533,276" Click="rb1_Click" >
             <Image x:Name="img1" Height="95" Source="/img/Poissons/imgPoisson1Droite.png" Stretch="Fill" Width="110" RenderTransformOrigin="0.509,0.497"/>
         </RadioButton>
 
         <Label Content="Choisissez votre poisson" HorizontalAlignment="Center" VerticalAlignment="Top" Height="52" Width="462" Background="{x:Null}" FontSize="36" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="#FFD79A10" FontFamily="Cooper Black"/>
 
-        <RadioButton x:Name="rb2" Margin="335,79,335,277" >
+        <RadioButton x:Name="rb2" Margin="335,79,335,277" Click="rb2_Click" >
             <Image x:Name="img2" Height="95" Source="/img/Poissons/imgPoisson2Droite.png" Stretch="Fill" Width="110" RenderTransformOrigin="0.509,0.497"/>
         </RadioButton>
 
-        <RadioButton x:Name="rb3" Margin="533,79,137,276" >
+        <RadioButton x:Name="rb3" Margin="533,79,137,276" Click="rb3_Click" >
             <Image x:Name="img3" Height="95" Source="/img/Poissons/imgPoisson3Droite.png" Stretch="Fill" Width="110" RenderTransformOrigin="0.509,0.497"/>
         </RadioButton>
 
-        <RadioButton x:Name="rb4" Margin="137,209,533,146" >
+        <RadioButton x:Name="rb4" Margin="137,209,533,146" Click="rb4_Click" >
             <Image x:Name="img4" Height="95" Source="/img/Poissons/imgPoisson4Droite.png" Stretch="Fill" Width="110" RenderTransformOrigin="0.509,0.497"/>
         </RadioButton>
 
-        <RadioButton x:Name="rb5" Margin="335,209,335,146" >
+        <RadioButton x:Name="rb5" Margin="335,209,335,146" Click="rb5_Click" >
             <Image x:Name="img5" Height="95" Source="/img/Poissons/imgPoisson5Droite.png" Stretch="Fill" Width="110" RenderTransformOrigin="0.509,0.497"/>
         </RadioButton>
 
-        <RadioButton x:Name="rb6" Margin="533,209,137,146" >
+        <RadioButton x:Name="rb6" Margin="533,209,137,146" Click="rb6_Click" >
             <Image x:Name="img6" Height="95" Source="/img/Poissons/imgPoisson6Droite.png" Stretch="Fill" Width="110" RenderTransformOrigin="0.509,0.497"/>
         </RadioButton>
 
-        <RadioButton x:Name="rb7" Margin="137,326,533,29" >
+        <RadioButton x:Name="rb7" Margin="137,326,533,29" Click="rb7_Click" >
             <Image x:Name="img7" Height="95" Source="/img/Poissons/imgPoisson7Droite.png" Stretch="Fill" Width="110" RenderTransformOrigin="0.509,0.497"/>
         </RadioButton>
 
-        <RadioButton x:Name="rb8" Margin="335,326,335,29" >
+        <RadioButton x:Name="rb8" Margin="335,326,335,29" Click="rb8_Click" >
             <Image x:Name="img8" Height="95" Source="/img/Poissons/imgPoisson8Droite.png" Stretch="Fill" Width="110" RenderTransformOrigin="0.509,0.497"/>
         </RadioButton>
 
-        <RadioButton x:Name="rb9" Margin="533,326,137,29" >
+        <RadioButton x:Name="rb9" Margin="533,326,137,29" Click="rb9_Click" >
             <Image x:Name="img9" Height="95" Source="/img/Poissons/imgPoissonChatDroite.png" Stretch="Fill" Width="110" RenderTransformOrigin="0.509,0.497"/>
         </RadioButton>
-        <Button Content="Suivant" HorizontalAlignment="Left" Margin="668,396,0,0" VerticalAlignment="Top" Height="54" Width="132" FontSize="24" Background="#FFD79A10" BorderThickness="5,5,5,5" Click="Button_Click" Foreground="White" FontFamily="Cooper Black">
+        <Button x:Name="butSuivant" Content="Suivant" HorizontalAlignment="Left" Margin="668,396,0,0" VerticalAlignment="Top" Height="54" Width="132" FontSize="24" Background="#FFD79A10" BorderThickness="5,5,5,5" Click="butSuivant_Click" Foreground="White" FontFamily="Cooper Black" IsEnabled="False">
             <Button.BorderBrush>
                 <RadialGradientBrush>
                     <GradientStop Color="Black" Offset="0"/>
