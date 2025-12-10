@@ -7,10 +7,70 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+
         <Label x:Name="labBienvenue" Content="BIENVENUE" HorizontalAlignment="Center" VerticalAlignment="Top" Height="100" Width="800" Background="#FF4AABA9" HorizontalContentAlignment="Center" FontSize="72" FontWeight="Bold"/>
-        <Label x:Name="labRegleJeu" Content="REGLES" HorizontalAlignment="Left" Margin="70,139,0,0" VerticalAlignment="Top" Height="36" Width="147" Background="#FF65B5B0"/>
-        <Label x:Name="labRegleTexte" Content="texte a mettre" HorizontalAlignment="Center" Margin="0,199,0,0" VerticalAlignment="Top" Height="173" Width="660" Background="#FF76BFC1"/>
-        <Button x:Name="but_Continuer" Content="CONTINUER" HorizontalAlignment="Left" Margin="584,390,0,0" VerticalAlignment="Top" FontWeight="Bold" BorderBrush="Black" BorderThickness="5,5,5,5" Background="#FF76BFC1" Height="50" Width="146"/>
+        <Label x:Name="labRegleJeu" Content="REGLES" HorizontalAlignment="Left" Margin="70,114,0,0" VerticalAlignment="Top" Height="36" Width="147" Background="#FF65B5B0"/>
+
+        <Button x:Name="but_Continuer" Content="CONTINUER" HorizontalAlignment="Left" Margin="644,390,0,0" VerticalAlignment="Top" FontWeight="Bold" BorderBrush="Black" BorderThickness="5,5,5,5" Background="#FF76BFC1" Height="50" Width="146" Click="but_Continuer_Click"/>
+        <StackPanel Margin="208,150,0,54" HorizontalAlignment="Left" Width="537">
+            <Label Content="Vous possédez une barre de faim qui diminue en continue. &#xD;&#xA;si elle se vide vous mourrez." Width="536" Background="{x:Null}" Height="48" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
+            <Label Content="Vous devez manger de la nourriture pour remplit votre barre de faim" Width="537" Background="{x:Null}" HorizontalAlignment="Left" Height="41" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="-4.318"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="1.435"/>
+                    </TransformGroup>
+                </Label.RenderTransform>
+            </Label>
+            <Label Content="Si vous vous prenez des déchets votre timer diminue&#xD;&#xA;(vous perdez du temps selon le niveau de difficulté)" Width="535" Background="{x:Null}" Height="52" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
+            <Label Content="Si vous touchez la méduse votre barre de faim diminue de -10&#xD;&#xA; pendant 10secondes (intoxication)" Height="36" Width="535" Background="{x:Null}" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
+            <Label Content="L'étoile de mer boost votre vitesse" Background="{x:Null}" FontSize="16" FontWeight="Bold" Height="37"/>
+            <Label Content="Atteignez les objectifs afin de passer au niveau supérieur" Height="37" FontSize="16" FontWeight="Bold" Background="{x:Null}"/>
+
+        </StackPanel>
+        <Grid Margin="19,155,592,60">
+            <Image Margin="78,49,38,156" Source="/img/Nourriture/imgCrevette.png" Stretch="Fill"/>
+            <Image Margin="33,43,78,150" Source="/img/Nourriture/imgPoissonJaune.png" Stretch="Fill"/>
+            <Image Margin="17,47,125,171" Source="/img/Nourriture/imgSardine.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="139.305"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Image Margin="126,74,-28,103" Source="/img/Déchets/imgBouteille.png" Stretch="Fill"/>
+            <Image Margin="104,98,36,117" Source="/img/Déchets/imgCigare.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="47.992"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Image Margin="81,97,66,116" Source="/img/Déchets/imgCigarette.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-114.545"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Image Margin="0,74,146,106" Source="/img/Déchets/imgSacPlastique.png" Stretch="Fill"/>
+            <Image Margin="94,118,-7,47" Source="/img/Nourriture/imgMeduse.png" Stretch="Fill"/>
+            <Image Margin="139,164,10,26" Source="/img/Nourriture/imgEtoileDeMer.png" Stretch="Fill"/>
+
+        </Grid>
+        <Image Margin="170,199,592,216" Source="/img/Nourriture/imgCalamar.png" Stretch="Fill"/>
+        <Image Margin="52,242,695,174" Source="/img/Déchets/imgPoubelle.png" Stretch="Fill"/>
 
     </Grid>
 </UserControl>
