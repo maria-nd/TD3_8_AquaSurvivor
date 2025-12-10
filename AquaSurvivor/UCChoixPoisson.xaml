@@ -6,17 +6,31 @@
              xmlns:local="clr-namespace:AquaSurvivor"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Canvas>
-        <RadioButton x:Name="choixp" Width="164" Height="102" Grid.Row="1" Canvas.Left="46" Canvas.Top="25" >
+    <Grid x:Name="rb1">
+        <RadioButton x:Name="choixp" Width="164" Height="102" Canvas.Left="46" Canvas.Top="25" Margin="22,59,614,289" >
             <RadioButton.Content>
-                <Image Height="80" Source="/img/Poissons/imgPoisson1Droite.png" Stretch="Fill" Width="112"/>
+                <Image x:Name="img1" Height="80" Source="/img/Poissons/imgPoisson1Droite.png" Stretch="Fill" Width="112"/>
             </RadioButton.Content>
         </RadioButton>
-        <RadioButton x:Name="po" Width="138" Height="85" Grid.Row="1" Canvas.Left="297" Canvas.Top="25" >
+        
+        <RadioButton x:Name="po" Width="138" Height="85" Canvas.Left="297" Canvas.Top="25" Margin="191,59,471,306" >
             <RadioButton.Content>
-                <Image Height="80" Source="/img/Poissons/imgPoisson1Droite.png" Stretch="Fill" Width="112"/>
+                <Image x:Name="img2" Height="80" Source="/img/Poissons/imgPoisson1Droite.png" Stretch="Fill" Width="112"/>
+            </RadioButton.Content>
+        </RadioButton>
+        
+        <RadioButton x:Name="poi" Width="138" Height="85" Canvas.Left="297" Canvas.Top="25" Margin="374,59,288,306" >
+            <RadioButton.Content>
+                <Image x:Name="img3" Height="80" Source="/img/Poissons/imgPoisson1Droite.png" Stretch="Fill" Width="112"/>
+            </RadioButton.Content>
+        </RadioButton>
+        
+        <RadioButton x:Name="poo" Width="138" Height="85" Canvas.Left="297" Canvas.Top="25" Margin="517,59,145,306" >
+            <RadioButton.Content>
+                <Image x:Name="img4" Height="80" Source="/img/Poissons/imgPoisson1Droite.png" Stretch="Fill" Width="112"/>
             </RadioButton.Content>
         </RadioButton>
 
-    </Canvas>
+
+    </Grid>
 </UserControl>

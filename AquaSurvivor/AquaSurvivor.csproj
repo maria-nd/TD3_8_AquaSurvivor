@@ -8,4 +8,80 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="img\Déchets\imgBouteille.png" />
+    <None Remove="img\Déchets\imgCigare.png" />
+    <None Remove="img\Déchets\imgCigarette.png" />
+    <None Remove="img\Déchets\imgPoubelle.png" />
+    <None Remove="img\Déchets\imgSacPlastique.png" />
+    <None Remove="img\Fonds\imgAquarium.png" />
+    <None Remove="img\Fonds\imgGeneral.png" />
+    <None Remove="img\Fonds\imgLac.jpg" />
+    <None Remove="img\Fonds\imgMer.jpg" />
+    <None Remove="img\Fonds\imgOcean.jpg" />
+    <None Remove="img\Fonds\imgRiviere.jpg" />
+    <None Remove="img\Nourriture\imgCalamar.png" />
+    <None Remove="img\Nourriture\imgCrevette.png" />
+    <None Remove="img\Nourriture\imgEtoileDeMer.png" />
+    <None Remove="img\Nourriture\imgMeduse.png" />
+    <None Remove="img\Nourriture\imgPoissonJaune.png" />
+    <None Remove="img\Nourriture\imgSardine.png" />
+    <None Remove="img\Poissons\imgPoisson1Droite.png" />
+    <None Remove="img\Poissons\imgPoisson1Gauche.png" />
+    <None Remove="img\Poissons\imgPoisson2Droite.png" />
+    <None Remove="img\Poissons\imgPoisson2Gauche.png" />
+    <None Remove="img\Poissons\imgPoisson3Droite.png" />
+    <None Remove="img\Poissons\imgPoisson3Gauche.png" />
+    <None Remove="img\Poissons\imgPoisson4Droite.png" />
+    <None Remove="img\Poissons\imgPoisson4Gauche.png" />
+    <None Remove="img\Poissons\imgPoisson5Droite.png" />
+    <None Remove="img\Poissons\imgPoisson5Gauche.png" />
+    <None Remove="img\Poissons\imgPoisson6Droite.png" />
+    <None Remove="img\Poissons\imgPoisson6Gauche.png" />
+    <None Remove="img\Poissons\imgPoisson7Droite.png" />
+    <None Remove="img\Poissons\imgPoisson7Gauche.png" />
+    <None Remove="img\Poissons\imgPoisson8Droite.png" />
+    <None Remove="img\Poissons\imgPoisson8Gauche.png" />
+    <None Remove="img\Poissons\imgPoissonChatDroite.png" />
+    <None Remove="img\Poissons\imgPoissonChatGauche.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="img\Déchets\imgBouteille.png" />
+    <Resource Include="img\Déchets\imgCigare.png" />
+    <Resource Include="img\Déchets\imgCigarette.png" />
+    <Resource Include="img\Déchets\imgPoubelle.png" />
+    <Resource Include="img\Déchets\imgSacPlastique.png" />
+    <Resource Include="img\Fonds\imgAquarium.png" />
+    <Resource Include="img\Fonds\imgGeneral.png" />
+    <Resource Include="img\Fonds\imgLac.jpg" />
+    <Resource Include="img\Fonds\imgMer.jpg" />
+    <Resource Include="img\Fonds\imgOcean.jpg" />
+    <Resource Include="img\Fonds\imgRiviere.jpg" />
+    <Resource Include="img\Nourriture\imgCalamar.png" />
+    <Resource Include="img\Nourriture\imgCrevette.png" />
+    <Resource Include="img\Nourriture\imgEtoileDeMer.png" />
+    <Resource Include="img\Nourriture\imgMeduse.png" />
+    <Resource Include="img\Nourriture\imgPoissonJaune.png" />
+    <Resource Include="img\Nourriture\imgSardine.png" />
+    <Resource Include="img\Poissons\imgPoisson1Droite.png" />
+    <Resource Include="img\Poissons\imgPoisson1Gauche.png" />
+    <Resource Include="img\Poissons\imgPoisson2Droite.png" />
+    <Resource Include="img\Poissons\imgPoisson2Gauche.png" />
+    <Resource Include="img\Poissons\imgPoisson3Droite.png" />
+    <Resource Include="img\Poissons\imgPoisson3Gauche.png" />
+    <Resource Include="img\Poissons\imgPoisson4Droite.png" />
+    <Resource Include="img\Poissons\imgPoisson4Gauche.png" />
+    <Resource Include="img\Poissons\imgPoisson5Droite.png" />
+    <Resource Include="img\Poissons\imgPoisson5Gauche.png" />
+    <Resource Include="img\Poissons\imgPoisson6Droite.png" />
+    <Resource Include="img\Poissons\imgPoisson6Gauche.png" />
+    <Resource Include="img\Poissons\imgPoisson7Droite.png" />
+    <Resource Include="img\Poissons\imgPoisson7Gauche.png" />
+    <Resource Include="img\Poissons\imgPoisson8Droite.png" />
+    <Resource Include="img\Poissons\imgPoisson8Gauche.png" />
+    <Resource Include="img\Poissons\imgPoissonChatDroite.png" />
+    <Resource Include="img\Poissons\imgPoissonChatGauche.png" />
+  </ItemGroup>
+
 </Project>
