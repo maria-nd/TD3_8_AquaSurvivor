@@ -42,6 +42,8 @@
     <None Remove="img\Poissons\imgPoisson7Gauche.png" />
     <None Remove="img\Poissons\imgPoisson8Droite.png" />
     <None Remove="img\Poissons\imgPoisson8Gauche.png" />
+    <None Remove="img\Poissons\imgPoisson9Droite.png" />
+    <None Remove="img\Poissons\imgPoisson9Gauche.png" />
     <None Remove="img\Poissons\imgPoissonChatDroite.png" />
     <None Remove="img\Poissons\imgPoissonChatGauche.png" />
   </ItemGroup>
@@ -80,8 +82,8 @@
     <Resource Include="img\Poissons\imgPoisson7Gauche.png" />
     <Resource Include="img\Poissons\imgPoisson8Droite.png" />
     <Resource Include="img\Poissons\imgPoisson8Gauche.png" />
-    <Resource Include="img\Poissons\imgPoissonChatDroite.png" />
-    <Resource Include="img\Poissons\imgPoissonChatGauche.png" />
+    <Resource Include="img\Poissons\imgPoisson9Droite.png" />
+    <Resource Include="img\Poissons\imgPoisson9Gauche.png" />
   </ItemGroup>
 
 </Project>

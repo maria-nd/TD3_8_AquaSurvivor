@@ -19,7 +19,8 @@ namespace AquaSurvivor
         public static string Perso { get; set; } = "";
         public static int PasPoisson { get; set; } = 2;
         public static bool perdu { get; set; } = false;
-
+       
+        public static int  NiveauChoisi { get; set; }
         public MainWindow()
         {
             InitializeComponent();
