@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="img\Boutons\imgBoutonPause.png" />
+    <None Remove="img\Boutons\imgBoutonPlay.png" />
+    <None Remove="img\Boutons\imgBoutonReprendre.png" />
+    <None Remove="img\Boutons\imgQuitter.png" />
+    <None Remove="img\Boutons\imgRejouer.png" />
+    <None Remove="img\Boutons\imgRejouerBleu.png" />
     <None Remove="img\Déchets\imgBouteille.png" />
     <None Remove="img\Déchets\imgCigare.png" />
     <None Remove="img\Déchets\imgCigarette.png" />
@@ -24,6 +30,7 @@
     <None Remove="img\Nourriture\imgCrevette.png" />
     <None Remove="img\Nourriture\imgEtoileDeMer.png" />
     <None Remove="img\Nourriture\imgMeduse.png" />
+    <None Remove="img\Nourriture\imgPerle.png" />
     <None Remove="img\Nourriture\imgPoissonJaune.png" />
     <None Remove="img\Nourriture\imgSardine.png" />
     <None Remove="img\Poissons\imgPoisson1Droite.png" />
@@ -47,6 +54,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="img\Boutons\imgBoutonPause.png" />
+    <Resource Include="img\Boutons\imgBoutonPlay.png" />
+    <Resource Include="img\Boutons\imgBoutonReprendre.png" />
+    <Resource Include="img\Boutons\imgQuitter.png" />
+    <Resource Include="img\Boutons\imgRejouer.png" />
+    <Resource Include="img\Boutons\imgRejouerBleu.png" />
     <Resource Include="img\Déchets\imgBouteille.png" />
     <Resource Include="img\Déchets\imgCigare.png" />
     <Resource Include="img\Déchets\imgCigarette.png" />
@@ -62,6 +75,7 @@
     <Resource Include="img\Nourriture\imgCrevette.png" />
     <Resource Include="img\Nourriture\imgEtoileDeMer.png" />
     <Resource Include="img\Nourriture\imgMeduse.png" />
+    <Resource Include="img\Nourriture\imgPerle.png" />
     <Resource Include="img\Nourriture\imgPoissonJaune.png" />
     <Resource Include="img\Nourriture\imgSardine.png" />
     <Resource Include="img\Poissons\imgPoisson1Droite.png" />

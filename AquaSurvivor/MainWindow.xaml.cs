@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Reflection;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -24,6 +25,7 @@ namespace AquaSurvivor
         {
             InitializeComponent();
             AfficheDemarrage();
+           
 
         }
         private void AfficheDemarrage()
@@ -35,7 +37,7 @@ namespace AquaSurvivor
             ZoneJeu.Content = uc;
             uc.but_Play.Click += AfficherReglesJeu;
         }
-
+        
         private void AfficherReglesJeu(object sender, RoutedEventArgs e)
         {
             UCReglesJeu uc = new UCReglesJeu();
@@ -43,6 +45,7 @@ namespace AquaSurvivor
             uc.but_Continuer.Click += AfficherChoixPoisson;
 
         }
+
 
         private void AfficherChoixPoisson(object sender, RoutedEventArgs e)
         {
@@ -63,8 +66,17 @@ namespace AquaSurvivor
         {
             UCJeu uc = new UCJeu();
             ZoneJeu.Content = uc;
-        }
+            uc.butPause.Click += AfficherMenu;
 
+        }
+        private void AfficherMenu(object sender, RoutedEventArgs e)
+        {
+            Menu fen = new Menu();
+            fen.ShowDialog();
+            fen.Left = this.Left + 450; 
+            fen.Top = this.Top + 150;
+            fen.butReglesJeu.Click += AfficherReglesJeu;
+        }
 
     }
 }

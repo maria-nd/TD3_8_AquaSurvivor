@@ -79,5 +79,11 @@ namespace AquaSurvivor
             Application.Current.MainWindow.KeyDown += canvasJeu_KeyDown;
             //Application.Current.MainWindow.KeyUp += canvasJeu_KeyUp;
         }
+
+        private void butPause_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
     }
 }

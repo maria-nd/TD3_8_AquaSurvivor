@@ -11,6 +11,15 @@
             <ImageBrush ImageSource="/img/Fonds/imgAquarium.png"/>
         </Canvas.Background>
         <Image x:Name="imgPoisson" Height="65" Canvas.Left="350" Source="/img/Poissons/imgPoisson1Droite.png" Stretch="Fill" Canvas.Top="328" Width="100"/>
-        <ProgressBar x:Name="barreFaim" Height="21"  Canvas.Top="58" Width="185" Value="100" RenderTransformOrigin="0.5,0.5" Canvas.Left="605" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <ProgressBar x:Name="barreFaim" Height="21"  Canvas.Top="62" Width="185" Value="100" RenderTransformOrigin="0.5,0.5" Canvas.Left="605" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button x:Name="butPause" Content="" Canvas.Left="739" Canvas.Top="10" Click="butPause_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Height="45">
+            <Button.Background>
+                <ImageBrush ImageSource="pack://application:,,,/img/Boutons/imgBoutonPause.png"/>
+            </Button.Background>
+        </Button>
+
+
+
     </Canvas>
+
 </UserControl>
