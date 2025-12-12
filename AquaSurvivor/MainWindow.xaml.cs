@@ -16,6 +16,10 @@ namespace AquaSurvivor
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static string Perso { get; set; } = "";
+        public static int PasPoisson { get; set; } = 2;
+        public static bool perdu { get; set; } = false;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -44,7 +48,13 @@ namespace AquaSurvivor
         {
             UCChoixPoisson uc = new UCChoixPoisson();
             ZoneJeu.Content = uc;
-            uc.butSuivant.Click += AfficherNiveauDifficulte;
+            uc.butSuivant.Click += AfficherJeu;
+        }
+
+        private void AfficherJeu(object sender, RoutedEventArgs e)
+        {
+            UCJeu uc = new UCJeu();
+            ZoneJeu.Content = uc;
         }
 
         private void AfficherNiveauDifficulte(object sender, RoutedEventArgs e)

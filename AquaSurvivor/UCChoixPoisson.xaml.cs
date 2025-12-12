@@ -33,47 +33,64 @@ namespace AquaSurvivor
         private void rb1_Click(object sender, RoutedEventArgs e)
         {
             butSuivant.IsEnabled = true;
+            MainWindow.Perso = "imgPoisson1";
 
         }
 
         private void rb2_Click(object sender, RoutedEventArgs e)
         {
             butSuivant.IsEnabled = true;
+            MainWindow.Perso = "imgPoisson2";
+
         }
 
         private void rb3_Click(object sender, RoutedEventArgs e)
         {
             butSuivant.IsEnabled = true;
+            MainWindow.Perso = "imgPoisson3";
+
         }
 
         private void rb4_Click(object sender, RoutedEventArgs e)
         {
             butSuivant.IsEnabled = true;
+            MainWindow.Perso = "imgPoisson4";
+
         }
 
         private void rb5_Click(object sender, RoutedEventArgs e)
         {
             butSuivant.IsEnabled = true;
+            MainWindow.Perso = "imgPoisson5";
+
         }
 
         private void rb6_Click(object sender, RoutedEventArgs e)
         {
             butSuivant.IsEnabled = true;
+            MainWindow.Perso = "imgPoisson6";
+
         }
 
         private void rb7_Click(object sender, RoutedEventArgs e)
         {
             butSuivant.IsEnabled = true;
+            MainWindow.Perso = "imgPoisson7";
+
         }
 
         private void rb8_Click(object sender, RoutedEventArgs e)
         {
             butSuivant.IsEnabled = true;
+            MainWindow.Perso = "imgPoisson8";
+
         }
 
         private void rb9_Click(object sender, RoutedEventArgs e)
         {
             butSuivant.IsEnabled = true;
+            MainWindow.Perso = "imgPoisson9";
+
         }
     }
 }
