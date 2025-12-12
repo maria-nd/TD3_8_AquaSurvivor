@@ -8,11 +8,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Label x:Name="labChoixDifficulte" Content="Choisissez Votre difficulté" HorizontalAlignment="Center" Height="94" Width="800" FontSize="22" HorizontalContentAlignment="Center" Background="#FF6AA798" FontWeight="Bold" VerticalContentAlignment="Center" VerticalAlignment="Top"/>
-       
+
         <Button x:Name="labFacile" Content="FACILE" HorizontalAlignment="Left" Margin="60,225,0,0" VerticalAlignment="Top" Height="78" Width="183" FontSize="18" FontWeight="Bold" Click="labFacile_Click"/>
-        <Button x:Name="labMoyen" Content="MOYEN" HorizontalAlignment="Center" Margin="0,225,0,0" VerticalAlignment="Top" Height="78" Width="183" FontWeight="Bold" FontSize="18" Click="labMoyen_Click"/>
+        <Button x:Name="labMoyen" Content="MOYEN" HorizontalAlignment="Left" Margin="308,225,0,0" VerticalAlignment="Top" Height="78" Width="184" FontWeight="Bold" FontSize="18" Click="labMoyen_Click"/>
         <Button x:Name="labDifficile" Content="DIFFICILE" HorizontalAlignment="Left" Margin="557,225,0,0" VerticalAlignment="Top" Height="78" Width="183" FontSize="18" FontWeight="Bold" Click="labDifficile_Click"/>
-        <Button x:Name="butSuivant" Content="Suivant" HorizontalAlignment="Left" Margin="668,396,0,0" VerticalAlignment="Top" Height="54" Width="132" FontSize="24" Background="#FFD79A10" BorderThickness="5,5,5,5" Click="butSuivant_Click" Foreground="White" FontFamily="Cooper Black" IsEnabled="False">
-        </Button>
+        <Button x:Name="butSuivant" Content="Suivant" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="54" Width="132" FontSize="24" Background="#FFD79A10" BorderThickness="5,5,5,5" Click="butSuivant_Click" Foreground="White" FontFamily="Cooper Black" IsEnabled="False"/>
     </Grid>
 </UserControl>

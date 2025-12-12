@@ -7,14 +7,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="91*"/>
+            <RowDefinition Height="59*"/>
+        </Grid.RowDefinitions>
 
         <Label x:Name="labBienvenue" Content="BIENVENUE" HorizontalAlignment="Center" VerticalAlignment="Top" Height="100" Width="800" Background="#FF4AABA9" HorizontalContentAlignment="Center" FontSize="72" FontWeight="Bold"/>
-        <Label x:Name="labRegleJeu" Content="REGLES" HorizontalAlignment="Left" Margin="70,114,0,0" VerticalAlignment="Top" Height="36" Width="147" Background="#FF65B5B0"/>
+        <Label x:Name="labRegleJeu" Content="REGLES" HorizontalAlignment="Left" Margin="19,105,0,0" VerticalAlignment="Top" Height="23" Width="147" Background="#FF65B5B0"/>
 
-        <Button x:Name="but_Continuer" Content="CONTINUER" Margin="0,0,10,10" FontWeight="Bold" BorderBrush="Black" BorderThickness="5,5,5,5" Background="#FF76BFC1" Click="but_Continuer_Click" HorizontalAlignment="Right" Width="146" Height="50" VerticalAlignment="Bottom"/>
-        <StackPanel Margin="208,150,0,54" HorizontalAlignment="Left" Width="537">
-            <Label Content="Vous possédez une barre de faim qui diminue en continue. &#xD;&#xA;si elle se vide vous mourrez." Width="536" Background="{x:Null}" Height="48" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
-            <Label Content="Vous devez manger de la nourriture pour remplit votre barre de faim" Width="537" Background="{x:Null}" HorizontalAlignment="Left" Height="41" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
+        <Button x:Name="but_Continuer" Content="CONTINUER" Margin="0,0,10,10" FontWeight="Bold" BorderBrush="Black" BorderThickness="5,5,5,5" Background="#FF76BFC1" Click="but_Continuer_Click" HorizontalAlignment="Right" Width="146" Height="50" VerticalAlignment="Bottom" Grid.Row="1"/>
+        <StackPanel Margin="190,124,0,0" Grid.RowSpan="2" HorizontalAlignment="Left" Width="537" Height="245" VerticalAlignment="Top">
+            <Label Content="Vous possédez une barre de faim qui diminue en continue. &#xD;&#xA;si elle se vide vous mourrez." Width="536" Background="{x:Null}" Height="53" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
+            <Label Content="Vous devez manger de la nourriture pour remplit votre barre de faim" Width="537" Background="{x:Null}" HorizontalAlignment="Left" Height="31" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
                 <Label.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -27,10 +31,10 @@
             <Label Content="Si vous vous prenez des déchets votre timer diminue&#xD;&#xA;(vous perdez du temps selon le niveau de difficulté)" Width="535" Background="{x:Null}" Height="52" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
             <Label Content="Si vous touchez la méduse votre barre de faim diminue de -10&#xD;&#xA; pendant 10secondes (intoxication)" Height="36" Width="535" Background="{x:Null}" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
             <Label Content="L'étoile de mer boost votre vitesse" Background="{x:Null}" FontSize="16" FontWeight="Bold" Height="37"/>
-            <Label Content="Atteignez les objectifs afin de passer au niveau supérieur" Height="37" FontSize="16" FontWeight="Bold" Background="{x:Null}"/>
+            <Label Content="Atteignez les objectifs afin de passer au niveau supérieur" Height="40" FontSize="16" FontWeight="Bold" Background="{x:Null}"/>
 
         </StackPanel>
-        <Grid Margin="19,155,0,0" HorizontalAlignment="Left" Width="189" Height="235" VerticalAlignment="Top">
+        <Grid Margin="10,133,0,0" Height="236" VerticalAlignment="Top" Grid.RowSpan="2" HorizontalAlignment="Left" Width="189">
             <Image Margin="78,49,38,156" Source="/img/Nourriture/imgCrevette.png" Stretch="Fill"/>
             <Image Margin="33,43,78,150" Source="/img/Nourriture/imgPoissonJaune.png" Stretch="Fill"/>
             <Image Margin="17,47,125,171" Source="/img/Nourriture/imgSardine.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
@@ -40,7 +44,7 @@
             <Image Margin="104,98,36,117" Source="/img/Déchets/imgCigare.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
 
             </Image>
-            <Image Margin="81,97,66,116" Source="/img/Déchets/imgCigarette.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+            <Image Margin="71,96,76,117" Source="/img/Déchets/imgCigarette.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -53,10 +57,11 @@
             <Image Margin="0,74,146,106" Source="/img/Déchets/imgSacPlastique.png" Stretch="Fill"/>
             <Image Margin="94,118,-7,47" Source="/img/Nourriture/imgMeduse.png" Stretch="Fill"/>
             <Image Margin="139,164,10,26" Source="/img/Nourriture/imgEtoileDeMer.png" Stretch="Fill"/>
+            <Image Margin="145,47,0,0" Source="/img/Nourriture/imgCalamar.png" Stretch="Fill" HorizontalAlignment="Left" Width="38" Height="35" VerticalAlignment="Top"/>
+            <Image Margin="40,67,0,0" Source="/img/Déchets/imgPoubelle.png" Stretch="Fill" HorizontalAlignment="Left" Width="36" Height="63" VerticalAlignment="Top"/>
+
 
         </Grid>
-        <Image Margin="170,199,0,0" Source="/img/Nourriture/imgCalamar.png" Stretch="Fill" HorizontalAlignment="Left" Width="38" Height="35" VerticalAlignment="Top"/>
-        <Image Margin="52,242,0,0" Source="/img/Déchets/imgPoubelle.png" Stretch="Fill" HorizontalAlignment="Left" Width="53" Height="34" VerticalAlignment="Top"/>
 
     </Grid>
 </UserControl>

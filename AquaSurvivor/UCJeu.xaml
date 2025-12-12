@@ -11,7 +11,6 @@
             <ImageBrush ImageSource="/img/Fonds/imgAquarium.png"/>
         </Canvas.Background>
         <Image x:Name="imgPoisson" Height="65" Canvas.Left="350" Source="/img/Poissons/imgPoisson1Droite.png" Stretch="Fill" Canvas.Top="328" Width="100"/>
-        <ProgressBar x:Name="barreFaim" Height="21" Canvas.Left="598" Canvas.Top="34" Width="185" Value="100" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
+        <ProgressBar x:Name="barreFaim" Height="21"  Canvas.Top="58" Width="185" Value="100" RenderTransformOrigin="0.5,0.5" Canvas.Left="605" HorizontalAlignment="Center" VerticalAlignment="Top"/>
     </Canvas>
 </UserControl>
