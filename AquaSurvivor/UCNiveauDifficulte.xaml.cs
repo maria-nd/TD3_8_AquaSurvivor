@@ -33,21 +33,25 @@ namespace AquaSurvivor
         private void labFacile_Click(object sender, RoutedEventArgs e)
         {
             butSuivant.IsEnabled = true;
+            MainWindow.NiveauChoisi =0;
         }
 
         private void labMoyen_Click(object sender, RoutedEventArgs e)
         {
             butSuivant.IsEnabled = true;
+            MainWindow.NiveauChoisi = 1;
         }
 
         private void labDifficile_Click(object sender, RoutedEventArgs e)
         {
             butSuivant.IsEnabled = true;
+            MainWindow.NiveauChoisi = 2;
         }
 
         private void butSuivant_Click(object sender, RoutedEventArgs e)
         {
 
         }
+        
     }
 }

@@ -42,7 +42,7 @@
         </RadioButton>
 
         <RadioButton x:Name="rb9" Margin="489,300,0,0" Click="rb9_Click" Height="95" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" >
-            <Image x:Name="img9" Height="95" Source="/img/Poissons/imgPoissonChatDroite.png" Stretch="Fill" Width="110" RenderTransformOrigin="0.509,0.497"/>
+            <Image x:Name="img9" Height="95" Source="/img/Poissons/imgPoisson9Droite.png" Stretch="Fill" Width="110" RenderTransformOrigin="0.509,0.497"/>
         </RadioButton>
         <Button x:Name="butSuivant" Content="Suivant" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="54" Width="132" FontSize="24" Background="#FFD79A10" BorderThickness="5,5,5,5" Click="butSuivant_Click" Foreground="White" FontFamily="Cooper Black" IsEnabled="False">
             <Button.BorderBrush>
