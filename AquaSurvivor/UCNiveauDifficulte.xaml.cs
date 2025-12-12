@@ -32,15 +32,20 @@ namespace AquaSurvivor
 
         private void labFacile_Click(object sender, RoutedEventArgs e)
         {
-
+            butSuivant.IsEnabled = true;
         }
 
         private void labMoyen_Click(object sender, RoutedEventArgs e)
         {
-
+            butSuivant.IsEnabled = true;
         }
 
         private void labDifficile_Click(object sender, RoutedEventArgs e)
+        {
+            butSuivant.IsEnabled = true;
+        }
+
+        private void butSuivant_Click(object sender, RoutedEventArgs e)
         {
 
         }

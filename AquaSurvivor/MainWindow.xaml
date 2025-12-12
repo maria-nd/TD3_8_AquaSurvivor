@@ -9,5 +9,6 @@
     <Window.Background>
         <ImageBrush x:Name="img_FondDeBase" ImageSource="/img/Fonds/imgGeneral.png"/>
     </Window.Background>
-    <ContentControl x:Name="ZoneJeu" />
+   
+    <ContentControl x:Name="ZoneJeu" />    
 </Window>

@@ -49,6 +49,13 @@ namespace AquaSurvivor
 
         private void AfficherNiveauDifficulte(object sender, RoutedEventArgs e)
         {
+            UCNiveauDifficulte uc = new UCNiveauDifficulte();
+            ZoneJeu.Content = uc;
+            uc.butSuivant.Click += AfficherJeu;
+        }
+
+        private void AfficherJeu(object sender, RoutedEventArgs e)
+        {
             throw new NotImplementedException();
         }
     }
