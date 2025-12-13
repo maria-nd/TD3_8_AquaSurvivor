@@ -30,6 +30,7 @@ namespace AquaSurvivor
         private static int tempsRestant = 60;
         private static int score = 0;
         private static int [] objectif = [30, 40, 55, 75];
+        private static string dernierePositionHorizontale="";
         public UCJeu()
         {
             InitializeComponent();
@@ -58,18 +59,20 @@ namespace AquaSurvivor
         private void BoostVitesse(object? sender, EventArgs e)
         {
             barreBoost.Opacity = 1;
-            boost--;
-            barreFaim.Value = boost;
+            MainWindow.PasPoisson += NiveauDifficulte[MainWindow.NiveauChoisi, 4];
+            if (boost > 0) // Une while serait + approprié ? 
+            {
+                boost--;
+                barreFaim.Value = boost;
+            }
 
-            if (boost == 0) 
+            else
             {
                 timerBoost.Stop();
                 barreBoost.Opacity = 0;
 
             }
-
-            timerBoost.Stop();
-            MainWindow.PasPoisson += NiveauDifficulte[MainWindow.NiveauChoisi, 4];
+            
         }
         //public void ObjectifAtteint()       a mette dans menu 
         //{
@@ -127,6 +130,7 @@ namespace AquaSurvivor
 
         private void ChangerImage(string direction)
         {
+
             string nomFichierImage = $"pack://application:,,,/img/Poissons/{MainWindow.Perso}{direction}.png";
             imgPoisson.Source = new BitmapImage(new Uri(nomFichierImage));
         }
@@ -137,6 +141,7 @@ namespace AquaSurvivor
             if (e.Key == Key.Right && (Canvas.GetLeft(imgPoisson) + MainWindow.PasPoisson) + imgPoisson.Width < canvasJeu.ActualWidth)
             {
                 ChangerImage("Droite");
+                dernierePositionHorizontale = "Droite";
                 Canvas.SetLeft(imgPoisson, Canvas.GetLeft(imgPoisson) + MainWindow.PasPoisson);
             }
             // à completer
@@ -145,17 +150,41 @@ namespace AquaSurvivor
             if (e.Key == Key.Left && Canvas.GetLeft(imgPoisson) - MainWindow.PasPoisson > 0)
             {
                 ChangerImage("Gauche");
+                dernierePositionHorizontale = "Gauche";
                 Canvas.SetLeft(imgPoisson, Canvas.GetLeft(imgPoisson) - MainWindow.PasPoisson);
             }
             // à completer
 #if DEBUG
 #endif
             if (e.Key == Key.Down && (Canvas.GetTop(imgPoisson) + MainWindow.PasPoisson) + imgPoisson.Height < canvasJeu.ActualHeight)
-                Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) + MainWindow.PasPoisson);
+                if (dernierePositionHorizontale == "Droite")
+                {
+                    
+                    ChangerImage("BasDroite");
+                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) + MainWindow.PasPoisson);
+                }
+                else
+                {
+                    
+                    ChangerImage("BasGauche");
+                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) + MainWindow.PasPoisson);
+
+                }
+
 #if DEBUG
 #endif
             if (e.Key == Key.Up && Canvas.GetTop(imgPoisson) - MainWindow.PasPoisson > 0)
-                Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) - MainWindow.PasPoisson);
+                if (dernierePositionHorizontale == "Droite")
+                {
+                    ChangerImage("HautDroite");
+                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) - MainWindow.PasPoisson);
+                }
+                else
+                {
+                    ChangerImage("HautGauche");
+                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) - MainWindow.PasPoisson);
+
+                }
 
 #if DEBUG
 #endif
