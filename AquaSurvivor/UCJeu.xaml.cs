@@ -31,6 +31,16 @@ namespace AquaSurvivor
         private static int score = 0;
         private static int [] objectif = [30, 40, 55, 75];
         private static string dernierePositionHorizontale="";
+
+       /* private int tickCompteur = 0;
+
+        private Random rand = new Random();
+        private readonly int NB_OBJETS = 10; 
+        private Image[] lesObjets;
+        private string[] obj_Dechets = { "imgBouteille.png", "imgCigare.png", "imgCigarette.png", "imgPoubelle.png", "imgSacPlastique.png", "imgMeduse.png" };
+
+
+*/
         public UCJeu()
         {
             InitializeComponent();
