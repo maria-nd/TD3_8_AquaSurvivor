@@ -17,8 +17,8 @@
         </StackPanel>
         <Button x:Name="butReglesJeu" Content="REGLES DU JEU" Margin="110,197,0,0" VerticalAlignment="Top" Height="34" FontWeight="Bold" Click="butReglesJeu_Click" HorizontalAlignment="Left" Width="160"/>
         <Button x:Name="butReprendre" Content="" Margin="110,236,0,0" Click="butReprendre_Click" HorizontalAlignment="Left" Width="38" Height="29" VerticalAlignment="Top"/>
-        <Button x:Name="butRejouer" Content="" HorizontalAlignment="Left" Margin="171,236,0,0" VerticalAlignment="Top" Height="29" Width="38" Click="butQuitterPartie_Click"/>
-        <Button x:Name="butQuitterPartie" Content="" Margin="232,236,0,0" VerticalAlignment="Top" Height="29" Click="butReprendre_Click" HorizontalAlignment="Left" Width="38"/>
+        <Button x:Name="butRejouer" Content="" HorizontalAlignment="Left" Margin="171,236,0,0" VerticalAlignment="Top" Height="29" Width="38" Click="butRejouer_Click"/>
+        <Button x:Name="butQuitterPartie" Content="" Margin="232,236,0,0" VerticalAlignment="Top" Height="29" Click="butQuitterPartie_Click" HorizontalAlignment="Left" Width="38"/>
 
 
     </Grid>

@@ -27,6 +27,7 @@ namespace AquaSurvivor
         DispatcherTimer timerBoost;
         public static int[,] NiveauDifficulte { get; set; } = { { 7, 20, 10, 2, 5, 2 }, { 5, 15, 15, 10, 2, 4 }, { 4, 10, 30, 20, 2, 7 } };
         //déplacement du poisson, régeneration barre de faim grace à nouritture, dégât des déchets sur le temps (en seconde ), dégat de la méduse sur la barre de faim, Boost (en pas) de l'étoile, déplacemet déchet (en pas)
+        private static int tempsRestant = 60;
         private static int score = 0;
         private static int [] objectif = [30, 40, 55, 75];
         public UCJeu()
@@ -85,7 +86,24 @@ namespace AquaSurvivor
 
         public void FaimDiminue(object? sender, EventArgs e)
         {
-            if (Faim > 0)
+            if (tempsRestant > 0)
+            {
+                tempsRestant--;
+                labelTemps.Content = $"Temps : {tempsRestant}s";
+            }
+            if (Faim == 0 || tempsRestant == 0)
+            {
+                timerFaim.Stop();
+                //timerBoost.Stop();
+                MainWindow.perdu = true;
+
+                // Appel de la méthode pour afficher l'écran Game Over
+                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                mainWindow.AfficherGameOver();
+            }
+
+
+                if (Faim > 0)
             {
                 Faim--;
                 barreFaim.Value = Faim;
@@ -98,6 +116,15 @@ namespace AquaSurvivor
             }
 
         }
+        public static void ReinitialiserJeu()
+        {
+            Faim = 100;
+            tempsRestant = 60;
+            score = 0;
+            MainWindow.perdu = false;
+        }
+
+
         private void ChangerImage(string direction)
         {
             string nomFichierImage = $"pack://application:,,,/img/Poissons/{MainWindow.Perso}{direction}.png";
@@ -143,7 +170,30 @@ namespace AquaSurvivor
         private void butPause_Click(object sender, RoutedEventArgs e)
         {
            
+        }       
+     
+        public void MettreEnPause()
+        {
+            if (timerFaim != null)
+            {
+                timerFaim.Stop();
+            }
+          
+            Application.Current.MainWindow.KeyDown -= canvasJeu_KeyDown;
         }
 
+        public void ReprendreJeu()
+        {
+            if (barreFaim != null)
+            {
+                barreFaim.Value = Faim;
+            }
+            if (timerFaim != null)
+            {
+                timerFaim.Start();
+            }
+          
+            Application.Current.MainWindow.KeyDown += canvasJeu_KeyDown;
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace AquaSurvivor
 
         private void butRetenter_Click(object sender, RoutedEventArgs e)
         {
-
+            UCJeu.ReinitialiserJeu();
         }
 
         private void butQuitter_Click(object sender, RoutedEventArgs e)
