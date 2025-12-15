@@ -32,6 +32,7 @@ namespace AquaSurvivor
         private static int score = 0;
         private static int [] objectif = [30, 40, 55, 75];
         private static string dernierePositionHorizontale="";
+        private static string [] lesObjets= [ "Nourriture" , "Objets Séciaux", "Déchets"];
 
         /* private int tickCompteur = 0;
 
@@ -68,7 +69,13 @@ namespace AquaSurvivor
             }
             
         }
-        private void BoostVitesse(object? sender, EventArgs e)
+
+        private void Empoisonner()
+        {
+            Faim -= NiveauDifficulte[MainWindow.NiveauChoisi, 3];
+            barreFaim.Value = Faim;
+        }
+        private void BoostVitesse() // J'ai retirer object sender, EventArgs e à  remettre si jamais ca pose problème
         {
             barreBoost.Opacity = 1;
             NiveauDifficulte[MainWindow.NiveauChoisi, 0] += NiveauDifficulte[MainWindow.NiveauChoisi, 4];
@@ -146,6 +153,7 @@ namespace AquaSurvivor
 
             string nomFichierImage = $"pack://application:,,,/img/Poissons/{MainWindow.Perso}{direction}.png";
             imgPoisson.Source = new BitmapImage(new Uri(nomFichierImage));
+
         }
             // à completer
 
@@ -245,36 +253,55 @@ namespace AquaSurvivor
             }
             Application.Current.MainWindow.KeyDown += DeplacementPoisson;
         }
+        private void ChangementFond()
+            {
+
+        }
+
+
         //private void collision(object sender, RoutedEventArgs e)
         //{
         //    Rect rectPoisson = new Rect(Canvas.GetLeft(imgPoisson), Canvas.GetTop(imgPoisson), imgPoisson.Width, imgPoisson.Height);
-
-        //    for (int i = 0; i < lesObjets.Length; i++)
+        //    for (int j = 0; j < lesObjets.Length; j++)
         //    {
-        //        Image objet = lesObjets[i];
-        //        Rect rectobjet = new Rect(Canvas.GetLeft(objet), Canvas.GetTop(objet), objet.Width, objet.Height);
-        //        if (rectPoisson.IntersectsWith(rectobjet)
-        //        {
-        //            if (typeObjet(objet) == "Nourriture")
+        //            for (int i = 0; i < objetNourriture.GetLength(1); i++)
         //            {
-        //                Faim += NiveauDifficulte[MainWindow.NiveauChoisi, 1];
+        //                Image objet = lesObjets[i];
+        //                Rect rectobjet = new Rect(Canvas.GetLeft(objet), Canvas.GetTop(objet), objet.Width, objet.Height);
+        //                if (rectPoisson.IntersectsWith(rectobjet))
+        //                    {
+        //                if (quelObjet == 0) // 0 = nourriture
+        //                {
+        //                    Faim += NiveauDifficulte[MainWindow.NiveauChoisi, 1]; //On ajoute des "points" à la faim selon le niveau choisis
 
+        //                }
+        //                else if (quelObjet == 1) // 1= objets Spéciaux
+        //                {
+        //                    if (i == 0) // étoile de mer
+        //                    {
+        //                        Perletoucher(); // On ajoute au score +1
+        //                    }
+        //                    else if (i == 1) // boost de vitesse
+        //                    {
+        //                        BoostVitesse(); // On active le boost de vitesse le poisson va plus vite selon le niveau choisis et on a la barreBoost qui aparraît à l'écran
+        //                    }
+        //                    else // Méduse
+        //                    {
+        //                        Empoisonner();
+        //                    }
+        //                }
+
+
+        //                else
+        //                {
+        //                    //timerJeuPrincipal-= NiveauDifficulte[MainWindow.NiveauChoisi, 3]; //On retire du temps selon le niveau choisis
+
+        //                }
+
+
+        //                }
         //            }
-        //            else if (typeObjet(objet) == "Perle")
-        //            {
-
-        //            }
-        //            else if (typeObjet(objet) == "Meduse")
-        //            {
-
-        //            }
-        //            else
-        //            {
-
-        //            }
-
-
-        //        }
+        //            quelObjet++;
 
         //    }
 
@@ -287,7 +314,7 @@ namespace AquaSurvivor
         //    return tag;
         //}
 
-      
+
 
     }
 }

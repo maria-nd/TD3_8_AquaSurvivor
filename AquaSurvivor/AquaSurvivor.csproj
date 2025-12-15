@@ -36,7 +36,6 @@
     <None Remove="img\Poissons\imgPoisson1BasDroite.png" />
     <None Remove="img\Poissons\imgPoisson1BasGauche.png" />
     <None Remove="img\Poissons\imgPoisson1Droite.png" />
-    <None Remove="img\Poissons\imgPoisson1Droite.png.~tmp" />
     <None Remove="img\Poissons\imgPoisson1Gauche.png" />
     <None Remove="img\Poissons\imgPoisson1HautDroite.png" />
     <None Remove="img\Poissons\imgPoisson1HautGauche.png" />
@@ -120,7 +119,6 @@
     <Resource Include="img\Poissons\imgPoisson1BasDroite.png" />
     <Resource Include="img\Poissons\imgPoisson1BasGauche.png" />
     <Resource Include="img\Poissons\imgPoisson1Droite.png" />
-    <Resource Include="img\Poissons\imgPoisson1Droite.png.~tmp" />
     <Resource Include="img\Poissons\imgPoisson1Gauche.png" />
     <Resource Include="img\Poissons\imgPoisson1HautDroite.png" />
     <Resource Include="img\Poissons\imgPoisson1HautGauche.png" />
