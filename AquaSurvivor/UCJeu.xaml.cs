@@ -32,15 +32,15 @@ namespace AquaSurvivor
         private static int [] objectif = [30, 40, 55, 75];
         private static string dernierePositionHorizontale="";
 
-       /* private int tickCompteur = 0;
+        /* private int tickCompteur = 0;
 
-        private Random rand = new Random();
-        private readonly int NB_OBJETS = 10; 
-        private Image[] lesObjets;
-        private string[] obj_Dechets = { "imgBouteille.png", "imgCigare.png", "imgCigarette.png", "imgPoubelle.png", "imgSacPlastique.png", "imgMeduse.png" };
+         private Random rand = new Random();
+         private readonly int NB_OBJETS = 10; 
+         private Image[] lesObjets;
+         private string[] obj_Dechets = { "imgBouteille.png", "imgCigare.png", "imgCigarette.png", "imgPoubelle.png", "imgSacPlastique.png", "imgMeduse.png","imgCrevette.png" };
 
 
-*/
+ */
         public UCJeu()
         {
             InitializeComponent();
@@ -234,5 +234,48 @@ namespace AquaSurvivor
           
             Application.Current.MainWindow.KeyDown += canvasJeu_KeyDown;
         }
+
+
+        //private void collision(object sender, RoutedEventArgs e)
+        //{
+        //    Rect rectPoisson = new Rect(Canvas.GetLeft(imgPoisson), Canvas.GetTop(imgPoisson), imgPoisson.Width, imgPoisson.Height);
+
+        //    for (int i = 0; i < lesObjets.Length; i++)
+        //    {
+        //        Image objet = lesObjets[i];
+        //        Rect rectobjet = new Rect(Canvas.GetLeft(objet), Canvas.GetTop(objet), objet.Width, objet.Height);
+        //        if (rectPoisson.IntersectsWith(rectobjet)
+        //        {
+        //            if (typeObjet(objet) == "Nourriture")
+        //            {
+        //                Faim += NiveauDifficulte[MainWindow.NiveauChoisi, 1];
+
+        //            }
+        //            else if (typeObjet(objet) == "Perle")
+        //            {
+
+        //            }
+        //            else if (typeObjet(objet) == "Meduse")
+        //            {
+
+        //            }
+        //            else
+        //            {
+
+        //            }
+
+
+        //        }
+
+        //    }
+
+        //}
+
+        //private string typeObjet(Image objet)
+        //{
+        //    string tag;
+        //    tag = objet.Tag.ToString();
+        //    return tag;
+        //}
     }
 }
