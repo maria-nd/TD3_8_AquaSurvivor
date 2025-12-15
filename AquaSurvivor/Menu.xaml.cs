@@ -37,6 +37,13 @@ namespace AquaSurvivor
 
         private void butReprendre_Click(object sender, RoutedEventArgs e)
         {
+           
+
+            this.Close(); 
+        }
+        private void butRejouer_Click(object sender, RoutedEventArgs e)
+        {
+            UCJeu.ReinitialiserJeu();
 
 
             this.Close();
@@ -61,5 +68,7 @@ namespace AquaSurvivor
 
             mainWindow.AfficheDemarrage();
         }
+
+      
     }
 }

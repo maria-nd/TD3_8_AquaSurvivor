@@ -25,6 +25,8 @@ namespace AquaSurvivor
         public static bool RevenirAuJeuDepuisRegles { get; set; } = false;
 
         public static int  NiveauChoisi { get; set; }
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -34,10 +36,8 @@ namespace AquaSurvivor
         }
         public void AfficheDemarrage()
         {
-            // crée et charge l'écran de démarrage
             UCDemarrage uc = new UCDemarrage();
 
-            // associe l'écran au conteneur
             ZoneJeu.Content = uc;
             uc.but_Play.Click += AfficherReglesJeu;
         }
@@ -91,11 +91,14 @@ namespace AquaSurvivor
         }
         private void AfficherJeu(object sender, RoutedEventArgs e)
         {
-            UCJeu uc = new UCJeu();
-            ZoneJeu.Content = uc;
-            uc.butPause.Click += AfficherMenu;
+            JeuEnCours = new UCJeu();
+            ZoneJeu.Content = JeuEnCours;
+            JeuEnCours.butPause.Click += AfficherMenu;
 
         }
+
+    
+
         private void AfficherMenu(object sender, RoutedEventArgs e)
         {
             if (ZoneJeu.Content is UCJeu ucJeuActuel)
@@ -150,6 +153,8 @@ namespace AquaSurvivor
         {
             Application.Current.Shutdown();
         }
+
+
 
     }
 }
