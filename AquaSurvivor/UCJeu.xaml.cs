@@ -42,7 +42,7 @@ namespace AquaSurvivor
         private readonly int NB_OBJETS = 15;
         //private string[,] lesObjets = { { "imgCalamar.png", "imgCrevette.png", "imgPoissonJaune.png", "imgSardine.png", "imgSardine.png", }, { "imgPerle.png", "imgEtoileDeMer.png", "imgMeduse.png", "imgMeduse.png", "imgMeduse.png" }, { "imgBouteille.png", "imgCigare.png", "imgCigarette.png", "imgPoubelle.png", "imgSacPlastique.png" } };
 
-
+        
         private Image[] lesObjetsVisuels;
         private int[] typeObjets;
         private int[] indexSpeciaux;
@@ -56,7 +56,7 @@ namespace AquaSurvivor
         public  int pasPoisson = NiveauDifficulte[MainWindow.NiveauChoisi, 0];
         private int dureeBoost = 10;
 
-
+        //REVOIR : timer et boost avec collision
 
         public UCJeu()
         {
@@ -182,8 +182,8 @@ namespace AquaSurvivor
 
         }
 
-        //private void DeplacementObjets()
-        //{
+       private void DeplacementObjets()
+        {
         //    int pasMouvement = NiveauDifficulte[MainWindow.NiveauChoisi, 5];
 
             for (int i = 0; i < lesObjetsVisuels.Length; i++)
