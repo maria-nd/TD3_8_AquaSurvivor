@@ -41,13 +41,7 @@ namespace AquaSurvivor
 
             this.Close(); 
         }
-        private void butRejouer_Click(object sender, RoutedEventArgs e)
-        {
-            UCJeu.ReinitialiserJeu();
-
-
-            this.Close();
-        }
+      
         private void butRejouer_Click(object sender, RoutedEventArgs e)
         {
             UCJeu.ReinitialiserJeu();

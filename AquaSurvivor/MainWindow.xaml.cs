@@ -18,7 +18,7 @@ namespace AquaSurvivor
     public partial class MainWindow : Window
     {
         public static string Perso { get; set; } = "";
-        public static int PasPoisson { get; set; } = 2;
+        
         public static bool perdu { get; set; } = false;
 
         private UCJeu JeuEnCours = null;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -45,6 +46,7 @@ namespace AquaSurvivor
         {
             InitializeComponent();
             ChangerImage("Gauche");
+            
             timerFaim = new DispatcherTimer();
             timerFaim.Interval = TimeSpan.FromSeconds(1);
             timerFaim.Tick += FaimDiminue;
@@ -147,53 +149,53 @@ namespace AquaSurvivor
         }
             // à completer
 
-        private void canvasJeu_KeyDown(object sender, KeyEventArgs e)
+        private void DeplacementPoisson(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Right && (Canvas.GetLeft(imgPoisson) + MainWindow.PasPoisson) + imgPoisson.Width < canvasJeu.ActualWidth)
+            if (e.Key == Key.Right && (Canvas.GetLeft(imgPoisson) + NiveauDifficulte[MainWindow.NiveauChoisi, 0]) + imgPoisson.Width < canvasJeu.ActualWidth)
             {
                 ChangerImage("Droite");
                 dernierePositionHorizontale = "Droite";
-                Canvas.SetLeft(imgPoisson, Canvas.GetLeft(imgPoisson) + MainWindow.PasPoisson);
+                Canvas.SetLeft(imgPoisson, Canvas.GetLeft(imgPoisson) + NiveauDifficulte[MainWindow.NiveauChoisi, 0]);
             }
             // à completer
 #if DEBUG
 #endif
-            if (e.Key == Key.Left && Canvas.GetLeft(imgPoisson) - MainWindow.PasPoisson > 0)
+            if (e.Key == Key.Left && Canvas.GetLeft(imgPoisson) - NiveauDifficulte[MainWindow.NiveauChoisi, 0] > 0)
             {
                 ChangerImage("Gauche");
                 dernierePositionHorizontale = "Gauche";
-                Canvas.SetLeft(imgPoisson, Canvas.GetLeft(imgPoisson) - MainWindow.PasPoisson);
+                Canvas.SetLeft(imgPoisson, Canvas.GetLeft(imgPoisson) - NiveauDifficulte[MainWindow.NiveauChoisi, 0]);
             }
             // à completer
 #if DEBUG
 #endif
-            if (e.Key == Key.Down && (Canvas.GetTop(imgPoisson) + MainWindow.PasPoisson) + imgPoisson.Height < canvasJeu.ActualHeight)
+            if (e.Key == Key.Down && (Canvas.GetTop(imgPoisson) + NiveauDifficulte[MainWindow.NiveauChoisi, 0]) + imgPoisson.Height < canvasJeu.ActualHeight)
                 if (dernierePositionHorizontale == "Droite")
                 {
                     
                     ChangerImage("BasDroite");
-                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) + MainWindow.PasPoisson);
+                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) + NiveauDifficulte[MainWindow.NiveauChoisi, 0]);
                 }
                 else
                 {
                     
                     ChangerImage("BasGauche");
-                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) + MainWindow.PasPoisson);
+                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) + NiveauDifficulte[MainWindow.NiveauChoisi, 0]);
 
                 }
 
 #if DEBUG
 #endif
-            if (e.Key == Key.Up && Canvas.GetTop(imgPoisson) - MainWindow.PasPoisson > 0)
+            if (e.Key == Key.Up && Canvas.GetTop(imgPoisson) - NiveauDifficulte[MainWindow.NiveauChoisi, 0] > 0)
                 if (dernierePositionHorizontale == "Droite")
                 {
                     ChangerImage("HautDroite");
-                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) - MainWindow.PasPoisson);
+                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) - NiveauDifficulte[MainWindow.NiveauChoisi, 0]);
                 }
                 else
                 {
                     ChangerImage("HautGauche");
-                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) - MainWindow.PasPoisson);
+                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) - NiveauDifficulte[MainWindow.NiveauChoisi, 0]);
 
                 }
 
@@ -203,7 +205,7 @@ namespace AquaSurvivor
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Application.Current.MainWindow.KeyDown += canvasJeu_KeyDown;
+            Application.Current.MainWindow.KeyDown += DeplacementPoisson;
             //Application.Current.MainWindow.KeyUp += canvasJeu_KeyUp;
         }
 
@@ -223,7 +225,7 @@ namespace AquaSurvivor
                 timerBoost.Stop();
             }
 
-            Application.Current.MainWindow.KeyDown -= canvasJeu_KeyDown;
+            Application.Current.MainWindow.KeyDown -= DeplacementPoisson;
         }
 
         // Méthode pour reprendre le jeu (appelée après la fermeture du Menu/Règles)
@@ -241,7 +243,7 @@ namespace AquaSurvivor
             {
                 timerBoost.Start();
             }
-            Application.Current.MainWindow.KeyDown += canvasJeu_KeyDown;
+            Application.Current.MainWindow.KeyDown += DeplacementPoisson;
         }
         //private void collision(object sender, RoutedEventArgs e)
         //{
