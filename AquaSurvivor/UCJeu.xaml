@@ -19,7 +19,7 @@
                 <ImageBrush ImageSource="pack://application:,,,/img/Boutons/imgBoutonPause.png"/>
             </Button.Background>
         </Button>
-        <Label x:Name="labelTemps" Content="Temps : 60s" 
+        <Label x:Name="labelTemps" Content="Temps : 100s" 
         Width="100" FontWeight="Bold" Foreground="Red"/>
 
 
