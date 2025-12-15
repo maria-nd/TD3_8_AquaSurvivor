@@ -36,7 +36,7 @@ namespace AquaSurvivor
         private static string dernierePositionHorizontale="";
         private static string [] lesObjets= [ "Nourriture" , "Objets Séciaux", "Déchets"];
 
-
+        private int pasPoisson;
 
         private Random rnd = new Random();
         private readonly int NB_OBJETS = 15;
@@ -62,6 +62,7 @@ namespace AquaSurvivor
         public UCJeu()
         {
             InitializeComponent();
+            this.pasPoisson = NiveauDifficulte[MainWindow.NiveauChoisi, 0];
             ChangerImage("Gauche");
 
             timerJeuPrincipal = new DispatcherTimer();
@@ -152,7 +153,7 @@ namespace AquaSurvivor
                 int baisseFaim = NiveauDifficulte[MainWindow.NiveauChoisi, 0];
                 if (Faim > 0)
                 {
-                    Faim -= 1;
+                    Faim -= baisseFaim; ;
                     if (Faim < 0) 
                         Faim = 0;
                     barreFaim.Value = Faim;
@@ -291,14 +292,25 @@ namespace AquaSurvivor
                     {
                         if (indexSpec == 0) 
                         {
-                            Perletoucher();
+                            Faim += NiveauDifficulte[MainWindow.NiveauChoisi, 1]; // Nourriture
+                            if (Faim > 100) Faim = 100;
+                            barreFaim.Value = Faim;
 
+                            score++;
+                            labelScore.Content = $"Score : {score} /{objectif[MainWindow.NiveauChoisi]}";
                         }
                         if (indexSpec == 1) 
                         {
-                            NiveauDifficulte[MainWindow.NiveauChoisi, 0] += NiveauDifficulte[MainWindow.NiveauChoisi, 4];
+                            if (boost <= 0)
+                            {
+                                NiveauDifficulte[MainWindow.NiveauChoisi, 0] += NiveauDifficulte[MainWindow.NiveauChoisi, 4];
+                            }
                             boost = 10;
                             if (timerBoost != null) timerBoost.Start();
+
+                          /*  NiveauDifficulte[MainWindow.NiveauChoisi, 0] += NiveauDifficulte[MainWindow.NiveauChoisi, 4];
+                            boost = 10;
+                            if (timerBoost != null) timerBoost.Start();*/
                         }
                         else if (indexSpec == 2) 
                         {
@@ -334,7 +346,7 @@ namespace AquaSurvivor
         private void BoostVitesse(object? sender, EventArgs e) // J'ai retirer object sender, EventArgs e à  remettre si jamais ca pose problème
         {
             barreBoost.Opacity = 1;
-            NiveauDifficulte[MainWindow.NiveauChoisi, 0] += NiveauDifficulte[MainWindow.NiveauChoisi, 4];
+            //NiveauDifficulte[MainWindow.NiveauChoisi, 0] += NiveauDifficulte[MainWindow.NiveauChoisi, 4];
             if (boost > 0) // Une while serait + approprié ? 
             {
                 boost--;
@@ -345,7 +357,7 @@ namespace AquaSurvivor
             {
                 timerBoost.Stop();
                 barreBoost.Opacity = 0;
-
+                NiveauDifficulte[MainWindow.NiveauChoisi, 0] = pasPoisson;
             }
             
         }
