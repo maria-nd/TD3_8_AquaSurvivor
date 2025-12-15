@@ -71,7 +71,7 @@ namespace AquaSurvivor
         private void BoostVitesse(object? sender, EventArgs e)
         {
             barreBoost.Opacity = 1;
-            MainWindow.PasPoisson += NiveauDifficulte[MainWindow.NiveauChoisi, 4];
+            NiveauDifficulte[MainWindow.NiveauChoisi, 0] += NiveauDifficulte[MainWindow.NiveauChoisi, 4];
             if (boost > 0) // Une while serait + approprié ? 
             {
                 boost--;
