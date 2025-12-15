@@ -20,7 +20,8 @@
             </Button.Background>
         </Button>
         <Label x:Name="labelTemps" Content="Temps : 60s" 
-       HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" FontWeight="Bold" Foreground="Red"/>
+        Width="100" FontWeight="Bold" Foreground="Red"/>
+
 
 
     </Canvas>

@@ -49,7 +49,7 @@ namespace AquaSurvivor
             timerFaim.Interval = TimeSpan.FromSeconds(1);
             timerFaim.Tick += FaimDiminue;
             timerFaim.Start();
-            Perletoucher();
+            //Perletoucher();
             timerBoost = new DispatcherTimer();
             timerBoost.Interval = TimeSpan.FromSeconds(1);
             timerBoost.Tick += BoostVitesse;
@@ -97,7 +97,7 @@ namespace AquaSurvivor
 
 
 
-        public void FaimDiminue(object? sender, EventArgs e)
+       public void FaimDiminue(object? sender, EventArgs e)
         {
             if (tempsRestant > 0)
             {
@@ -129,6 +129,7 @@ namespace AquaSurvivor
             }
 
         }
+
         public static void ReinitialiserJeu()
         {
             Faim = 100;
@@ -209,18 +210,23 @@ namespace AquaSurvivor
         private void butPause_Click(object sender, RoutedEventArgs e)
         {
            
-        }       
-     
+        }
         public void MettreEnPause()
         {
             if (timerFaim != null)
             {
                 timerFaim.Stop();
             }
-          
+
+            if (timerBoost != null)
+            {
+                timerBoost.Stop();
+            }
+
             Application.Current.MainWindow.KeyDown -= canvasJeu_KeyDown;
         }
 
+        // Méthode pour reprendre le jeu (appelée après la fermeture du Menu/Règles)
         public void ReprendreJeu()
         {
             if (barreFaim != null)
@@ -231,11 +237,15 @@ namespace AquaSurvivor
             {
                 timerFaim.Start();
             }
-          
+            if (timerBoost != null)
+            {
+                timerBoost.Start();
+            }
             Application.Current.MainWindow.KeyDown += canvasJeu_KeyDown;
         }
 
 
+<<<<<<< HEAD
         //private void collision(object sender, RoutedEventArgs e)
         //{
         //    Rect rectPoisson = new Rect(Canvas.GetLeft(imgPoisson), Canvas.GetTop(imgPoisson), imgPoisson.Width, imgPoisson.Height);
@@ -277,5 +287,8 @@ namespace AquaSurvivor
         //    tag = objet.Tag.ToString();
         //    return tag;
         //}
+=======
+      
+>>>>>>> a670e53b214ef8540ad17e58b7a8401277311f46
     }
 }

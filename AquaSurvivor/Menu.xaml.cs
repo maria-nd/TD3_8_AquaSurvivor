@@ -25,6 +25,7 @@ namespace AquaSurvivor
             
 
         }
+
         private void butReglesJeu_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
@@ -39,6 +40,13 @@ namespace AquaSurvivor
            
 
             this.Close(); 
+        }
+        private void butRejouer_Click(object sender, RoutedEventArgs e)
+        {
+            UCJeu.ReinitialiserJeu();
+
+
+            this.Close();
         }
         private void butRejouer_Click(object sender, RoutedEventArgs e)
         {

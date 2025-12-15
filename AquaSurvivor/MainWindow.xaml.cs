@@ -64,11 +64,14 @@ namespace AquaSurvivor
             }
             else
             {
-                JeuEnCours = null; 
+                JeuEnCours = null;
                 AfficherChoixPoisson(sender, e);
             }
-          
+
         }
+
+
+
 
 
         public void AfficherChoixPoisson(object sender, RoutedEventArgs e)
@@ -110,8 +113,8 @@ namespace AquaSurvivor
 
                 fen.butReprendre.Click += (s, args) =>
                 {
-                    fen.Close(); 
-                                 
+                    fen.Close();
+
                     if (JeuEnCours != null)
                     {
                         JeuEnCours.ReprendreJeu();
@@ -120,7 +123,6 @@ namespace AquaSurvivor
 
                 fen.ShowDialog();
 
-                
             }
         }
 
@@ -134,25 +136,19 @@ namespace AquaSurvivor
             AfficherReglesJeu(sender, e);
         }
 
-
-
-
-
-
         public void AfficherGameOver()
         {
             // clavier pcq quand j'essaye de deplacer ça me déplace le poisson quand même
-           // Application.Current.MainWindow.KeyDown -= (ZoneJeu.Content as UCJeu).canvasJeu_KeyDown;
+            // Application.Current.MainWindow.KeyDown -= (ZoneJeu.Content as UCJeu).canvasJeu_KeyDown;
 
             UCGameOver uc = new UCGameOver();
             ZoneJeu.Content = uc;
-            uc.butRetenter.Click += AfficherChoixPoisson; 
+            uc.butRetenter.Click += AfficherChoixPoisson;
             uc.butQuitter.Click += QuitterJeu;
 
-           
+
 
         }
-
         private void QuitterJeu(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
