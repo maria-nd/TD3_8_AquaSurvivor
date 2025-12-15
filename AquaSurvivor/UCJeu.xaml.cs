@@ -243,9 +243,6 @@ namespace AquaSurvivor
             }
             Application.Current.MainWindow.KeyDown += canvasJeu_KeyDown;
         }
-
-
-<<<<<<< HEAD
         //private void collision(object sender, RoutedEventArgs e)
         //{
         //    Rect rectPoisson = new Rect(Canvas.GetLeft(imgPoisson), Canvas.GetTop(imgPoisson), imgPoisson.Width, imgPoisson.Height);
@@ -287,8 +284,8 @@ namespace AquaSurvivor
         //    tag = objet.Tag.ToString();
         //    return tag;
         //}
-=======
+
       
->>>>>>> a670e53b214ef8540ad17e58b7a8401277311f46
+
     }
 }
