@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Menu" Height="308" Width="380" Background="#FF02ACB5" ResizeMode="NoResize">
     <Grid>
-        <Label FontWeight="Bold" FontSize="18" Content="Vous êtes dans ....." Height="39" VerticalAlignment="Top"/>
+        <Label FontWeight="Bold" FontSize="18" Content="Vous êtes dans ...." Height="39" VerticalAlignment="Top"/>
         <StackPanel Margin="0,49,0,0" Height="136" VerticalAlignment="Top" >
             <Label Content="OBJECTIFS:  " FontSize="14" FontWeight="Bold"/>
             <Label Content="1. OBJECTIFS: Attraper 3 perles pour passer à la rivière " FontSize="14" FontWeight="Bold"/>
