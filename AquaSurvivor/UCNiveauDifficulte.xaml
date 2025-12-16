@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label x:Name="labChoixDifficulte" Content="Choisissez Votre difficulté" HorizontalAlignment="Center" Height="94" Width="800" FontSize="22" HorizontalContentAlignment="Center" Background="#FF6AA798" FontWeight="Bold" VerticalContentAlignment="Center" VerticalAlignment="Top"/>
+        <Label x:Name="labChoixDifficulte" Content="Choisissez Votre difficulté" HorizontalAlignment="Center" Height="94" Width="800" FontSize="22" HorizontalContentAlignment="Center" Background="{x:Null}" FontWeight="Bold" VerticalContentAlignment="Center" VerticalAlignment="Top" Foreground="#FFD79A10"/>
 
         <Button x:Name="labFacile" Content="FACILE" HorizontalAlignment="Left" Margin="60,225,0,0" VerticalAlignment="Top" Height="78" Width="183" FontSize="18" FontWeight="Bold" Click="labFacile_Click"/>
         <Button x:Name="labMoyen" Content="MOYEN" HorizontalAlignment="Left" Margin="308,225,0,0" VerticalAlignment="Top" Height="78" Width="184" FontWeight="Bold" FontSize="18" Click="labMoyen_Click"/>
