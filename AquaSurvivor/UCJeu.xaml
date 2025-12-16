@@ -8,18 +8,18 @@
              d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Canvas x:Name="canvasJeu">
         <Canvas.Background>
-            <ImageBrush ImageSource="/img/Fonds/imgAquarium.png"/>
+            <ImageBrush x:Name="imgFond" ImageSource="/img/Fonds/imgAquarium.png"/>
         </Canvas.Background>
         <Image x:Name="imgPoisson" Height="65" Canvas.Left="350" Source="/img/Poissons/imgPoisson1Droite.png" Stretch="Fill" Canvas.Top="328" Width="100"/>
         <ProgressBar x:Name="barreFaim" Height="21"  Canvas.Top="58" Width="185" Value="100" RenderTransformOrigin="0.5,0.5" Canvas.Left="605" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <Label x:Name="labelScore" Content="Score : 0/20" Canvas.Left="100" HorizontalAlignment="Left" VerticalAlignment="Center" Width="168" Foreground="White" FontSize="16" FontWeight="Bold"/>
+        <Label x:Name="labelScore" Content="Score :" Canvas.Left="100" HorizontalAlignment="Left" VerticalAlignment="Center" Width="168" Foreground="White" FontSize="16" FontWeight="Bold"/>
         <ProgressBar x:Name="barreBoost" Height="21" Canvas.Left="605" Canvas.Top="101" Width="185" Foreground="#FFD79A10" Maximum="10" Opacity="0"/>
         <Button x:Name="butPause" Content="" Canvas.Left="739" Canvas.Top="10" Click="butPause_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Height="45">
             <Button.Background>
                 <ImageBrush ImageSource="pack://application:,,,/img/Boutons/imgBoutonPause.png"/>
             </Button.Background>
         </Button>
-        <Label x:Name="labelTemps" Content="Temps : 100s" 
+        <Label x:Name="labelTemps" Content="Temps :" 
         Width="100" FontWeight="Bold" Foreground="Red"/>
 
 
