@@ -27,20 +27,16 @@ namespace AquaSurvivor
         public static int boost { get; set; } = 10;
         DispatcherTimer timerJeuPrincipal;
         DispatcherTimer timerBoost;
-        public static int[,] NiveauDifficulte { get; set; } = { { 7, 20, 10, 2, 5, 2 }, { 5, 15, 15, 10, 2, 4 }, { 4, 10, 30, 20, 2, 7 } };
+        public static int[,] NiveauDifficulte { get; set; } = { { 7, 20, 10, 2, 5, 2, 1, 2 }, { 5, 15, 15, 10, 2, 4, 2, 3 }, { 4, 10, 30, 20, 2, 7, 5, 5 } };
+
         //déplacement du poisson,     régeneration barre de faim grace à nouritture,      dégât des déchets sur le temps (en seconde ),
         //dégat de la méduse sur la barre de faim,       Boost (en pas) de l'étoile,      déplacemet déchet (en pas)
         private static int tempsRestant = 100;
         private static int score = 0;
         private static int [] objectif = [30, 40, 55, 75];
         private static string dernierePositionHorizontale="";
-        private static string [] lesObjets= [ "Nourriture" , "Objets Séciaux", "Déchets"];
 
-        /*private int pasPoisson;
-        private static int[] objectif = [30, 40, 55, 75];
-        private static string dernierePositionHorizontale = "";
-        private static string[] lesObjets = ["Nourriture", "Objets Séciaux", "Déchets"];
-        private static bool booster = false;*/
+      
 
 
         private Random rnd = new Random();
@@ -59,32 +55,8 @@ namespace AquaSurvivor
         private string[] dechets = { "imgBouteille.png", "imgCigare.png", "imgCigarette.png", "imgPoubelle.png", "imgSacPlastique.png" };
         private string[] fond = { "imgAquarium.png", "imgRiviere.png", "imgLac.png", "imgMer.png", "imgOcean.png" };
         public  int pasPoisson = NiveauDifficulte[MainWindow.NiveauChoisi, 0];
-        private int dureeBoost = 10;
 
-        //REVOIR : timer et boost avec collision
-
-        /*public UCJeu()
-        {
-            InitializeComponent();
-            this.pasPoisson = NiveauDifficulte[MainWindow.NiveauChoisi, 0];
-            //ChangerImage("Gauche");
-
-            ChargerImage(imgPoisson, $"/img/Poissons/{MainWindow.Perso}Gauche");
-
-            timerJeuPrincipal = new DispatcherTimer();
-            timerJeuPrincipal.Interval = TimeSpan.FromSeconds(1);
-            timerJeuPrincipal.Tick += JeuCompteur;
-            timerJeuPrincipal.Start();
-
-            //jsp si je laisse comme ça
-            timerBoost = new DispatcherTimer();
-            timerBoost.Interval = TimeSpan.FromSeconds(1);
-            //timerBoost.Tick += BoostVitesse;
-
-            //InitObjets();
-
-           // Perletoucher();
-        }*/
+        
         public UCJeu()
         {
             InitializeComponent();
@@ -94,150 +66,190 @@ namespace AquaSurvivor
             timerJeuPrincipal = new DispatcherTimer();
             timerJeuPrincipal.Interval = TimeSpan.FromMilliseconds(50);
             timerJeuPrincipal.Tick += JeuCompteur;
-            timerJeuPrincipal.Start();
+           
+
 
             //jsp si je laisse comme ça
             timerBoost = new DispatcherTimer();
             timerBoost.Interval = TimeSpan.FromSeconds(1);
             timerBoost.Tick += BoostVitesse;
 
-            //InitObjets();
+           
+        }
+  
 
-            // Perletoucher();
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.KeyDown += DeplacementPoisson;
+            //Application.Current.MainWindow.KeyUp += canvasJeu_KeyUp;
+
+            InitObjets();
+            timerJeuPrincipal.Start();
         }
 
 
 
+      
 
-
-
+       
         private void InitObjets()
         {
             lesObjetsVisuels = new Image[NB_OBJETS];
             typeObjets = new int[NB_OBJETS];
-            indexSpeciaux = new int[NB_OBJETS]; 
+            indexSpeciaux = new int[NB_OBJETS];
 
             for (int i = 0; i < NB_OBJETS; i++)
             {
-                int chance = rnd.Next(0, 100);
-                int type;
-                string nomFichier;
-                string dossier;
-
-                if (chance < 60) // 60% Déchets
-                {
-                    type = 1; // Spécial
-                    int index = rnd.Next(objetSpeciaux.Length);
-                    nomFichier = objetSpeciaux[index];
-                    dossier = "Nourriture";
-                    indexSpeciaux[i] = index;
-                }
-                else if (chance < 75) 
-                {
-                    type = 0; // Nourriture
-                    nomFichier = nourriture[rnd.Next(nourriture.Length)];
-                    dossier = "Nourriture";
-                    indexSpeciaux[i] = -1;
-                }
-                else 
-                {
-                    type = 2;
-                    nomFichier = dechets[rnd.Next(dechets.Length)];
-                    dossier = "Déchets";
-                    indexSpeciaux[i] = -1;
-
-                    type = 1; // Spécial
-                    int index = rnd.Next(objetSpeciaux.Length);
-                    nomFichier = objetSpeciaux[index];
-                    dossier = "Nourriture";
-                    indexSpeciaux[i] = index;
-                  
-                }
-
-                typeObjets[i] = type; 
-
                 lesObjetsVisuels[i] = new Image
                 {
-                    Source = new BitmapImage(new Uri($"pack://application:,,,/img/{dossier}/{nomFichier}")),
                     Width = 50,
-                    Height = 50,
+                    Height = 50
                 };
 
                 canvasJeu.Children.Add(lesObjetsVisuels[i]);
-                //essayer de gerer le repositionnement
-
-                double maxLeft = canvasJeu.ActualWidth - lesObjetsVisuels[i].Width;
-                Canvas.SetLeft(lesObjetsVisuels[i], rnd.Next(0, (int)maxLeft) );
-                Canvas.SetTop(lesObjetsVisuels[i], -rnd.Next(200, 800) * (i + 1));
+                ResetObjet(i);
             }
+        }
+        private void ResetObjet(int index)
+        {
+            int chance = rnd.Next(100);
+            int type;
+            string fichier;
+            string dossier;
+
+            if (chance < 60)
+            {
+                type = 2; // Déchet
+                fichier = dechets[rnd.Next(dechets.Length)];
+                dossier = "Déchets";
+                indexSpeciaux[index] = -1;
+            }
+            else if (chance < 85)
+            {
+                type = 0; // Nourriture
+                fichier = nourriture[rnd.Next(nourriture.Length)];
+                dossier = "Nourriture";
+                indexSpeciaux[index] = -1;
+            }
+            else
+            {
+                type = 1; // Spécial
+                int spec = rnd.Next(objetSpeciaux.Length);
+                fichier = objetSpeciaux[spec];
+                dossier = "Nourriture";
+                indexSpeciaux[index] = spec;
+            }
+
+            typeObjets[index] = type;
+
+            lesObjetsVisuels[index].Source =
+                new BitmapImage(new Uri($"pack://application:,,,/img/{dossier}/{fichier}"));
+
+            double maxLeft = canvasJeu.ActualWidth - 50;
+            Canvas.SetLeft(lesObjetsVisuels[index], rnd.Next(0, (int)maxLeft));
+            Canvas.SetTop(lesObjetsVisuels[index], -rnd.Next(100, 800));
         }
 
 
 
-        /* private void JeuCompteur(object? sender, EventArgs e)
-         {
 
-             Faim -= NiveauDifficulte[MainWindow.NiveauChoisi,1];
-             if (tempsRestant > 0)
-             {
-                 int baisseFaim = NiveauDifficulte[MainWindow.NiveauChoisi, 0];
-                 if (Faim > 0)
-                 {
-                     Faim -= baisseFaim; ;
-                     if (Faim < 0) 
-                         Faim = 0;
-                     barreFaim.Value = Faim;
-                 }
-
-                 if (tempsRestant > 0)
-                 {
-                     tempsRestant--;
-                     labelTemps.Content = $"Temps : {tempsRestant}s";
-                 }
-
-                 compteur = 0;
-                 tempsRestant--;
-                 labelTemps.Content = $"Temps : {tempsRestant}s";
-             }
-             if (Faim <= 0 || tempsRestant <= 0)
-             {
-                 timerJeuPrincipal.Stop();
-                 if (timerBoost != null) timerBoost.Stop();
-                 MainWindow.perdu = true;
-                 MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-                 mainWindow.AfficherGameOver();
-             }
-             *//*if (BoostVitesse)
-             {
-                 barreBoost.Opacity = 1;
-                 dureeBoost--;
-                 pasPoisson += NiveauDifficulte[MainWindow.NiveauChoisi, 4];
-                 barreBoost.Value = dureeBoost;
-             }*//*
-             barreFaim.Value = Faim;
-
-
-         }*/
-
-        private void JeuCompteur(object? sender, EventArgs e)
+       
+        private void DeplacementObjets()
         {
-            compteur++;
-            if (compteur * 50 >= 1000)
+            if (lesObjetsVisuels == null) return;
+
+            int pas = NiveauDifficulte[MainWindow.NiveauChoisi, 5];
+
+            for (int i = 0; i < lesObjetsVisuels.Length; i++)
             {
-                int baisseFaim = NiveauDifficulte[MainWindow.NiveauChoisi, 0];
-                if (Faim > 0)
+                Image obj = lesObjetsVisuels[i];
+                if (obj == null) continue;
+
+                Canvas.SetTop(obj, Canvas.GetTop(obj) + pas);
+
+                if (Canvas.GetTop(obj) > canvasJeu.ActualHeight)
                 {
-                    Faim -= baisseFaim; ;
-                    if (Faim < 0)
-                        Faim = 0;
+                    if (typeObjets[i] == 2)
+                    {
+                        Faim -= NiveauDifficulte[MainWindow.NiveauChoisi, 6];
+                        if (Faim < 0) Faim = 0;
+                        barreFaim.Value = Faim;
+                    }
+
+                    ResetObjet(i);
+                }
+            }
+        }
+        private void VerifierCollisions()
+        {
+            double pLeft = Canvas.GetLeft(imgPoisson);
+            double pTop = Canvas.GetTop(imgPoisson);
+
+            if (double.IsNaN(pLeft) || double.IsNaN(pTop)) return;
+
+            Rect rectPoisson = new Rect(pLeft, pTop, imgPoisson.Width, imgPoisson.Height);
+
+            for (int i = 0; i < lesObjetsVisuels.Length; i++)
+            {
+                Image obj = lesObjetsVisuels[i];
+                if (obj == null) continue;
+
+                double oLeft = Canvas.GetLeft(obj);
+                double oTop = Canvas.GetTop(obj);
+
+                if (double.IsNaN(oLeft) || double.IsNaN(oTop)) continue;
+
+                Rect rectObj = new Rect(oLeft, oTop, obj.Width, obj.Height);
+
+                if (!rectPoisson.IntersectsWith(rectObj)) continue;
+
+                if (typeObjets[i] == 0)
+                {
+                    Faim += NiveauDifficulte[MainWindow.NiveauChoisi, 1];
+                    if (Faim > 100) Faim = 100;
                     barreFaim.Value = Faim;
                 }
-
-                if (tempsRestant > 0)
+                else if (typeObjets[i] == 2)
                 {
-                    tempsRestant--;
-                    labelTemps.Content = $"Temps : {tempsRestant}s";
+                    tempsRestant -= NiveauDifficulte[MainWindow.NiveauChoisi, 2];
                 }
+                else
+                {
+                    if (indexSpeciaux[i] == 0)
+                    {
+                        score++;
+                        labelScore.Content = $"Score : {score}/{objectif[MainWindow.NiveauChoisi]}";
+                    }
+                    else if (indexSpeciaux[i] == 1)
+                    {
+                        boost = 10;
+                        barreBoost.Value = boost;
+                        barreBoost.Opacity = 1;
+                        timerBoost.Start();
+                    }
+                    else if (indexSpeciaux[i] == 2)
+                    {
+                        Faim -= NiveauDifficulte[MainWindow.NiveauChoisi, 3];
+                        if (Faim < 0) Faim = 0;
+                        barreFaim.Value = Faim;
+                    }
+                }
+
+                ResetObjet(i);
+            }
+        }
+        private void JeuCompteur(object sender, EventArgs e)
+        {
+            compteur++;
+
+            if (compteur * 50 >= 1000)
+            {
+                Faim--;
+                if (Faim < 0) Faim = 0;
+                barreFaim.Value = Faim;
+
+                tempsRestant--;
+                labelTemps.Content = $"Temps : {tempsRestant}s";
 
                 compteur = 0;
             }
@@ -248,179 +260,27 @@ namespace AquaSurvivor
             if (Faim <= 0 || tempsRestant <= 0)
             {
                 timerJeuPrincipal.Stop();
-                if (timerBoost != null) timerBoost.Stop();
+                timerBoost.Stop();
                 MainWindow.perdu = true;
-
-                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-                mainWindow.AfficherGameOver();
+                ((MainWindow)Application.Current.MainWindow).AfficherGameOver();
             }
         }
 
 
-        //private void BoostActif(object sender, EventArgs e)
+     
 
-
-        /* private void DeplacementObjets()
+        /* private void Perletoucher()
          {
-             barreBoost.Opacity = 1;
-             pasPoisson += NiveauDifficulte[MainWindow.NiveauChoisi, 4];
-
+             for (int i = 0; i < objectif.Length; i++)
+             {
+                 while (score < objectif[i])
+                 {
+                     score += 1;
+                     labelScore.Content = $"Score : {score} /{objectif[i]}";
+                 }
+             }
 
          }*/
-
-        private void DeplacementObjets()
-        {
-            int pasMouvement = NiveauDifficulte[MainWindow.NiveauChoisi, 5];
-
-            for (int i = 0; i < lesObjetsVisuels.Length; i++)
-            {
-                Image objet = lesObjetsVisuels[i];
-
-                   Canvas.SetTop(objet, Canvas.GetTop(objet) + pasMouvement);
-
-                if (Canvas.GetTop(objet) > canvasJeu.ActualHeight)
-                {
-                    int type = typeObjets[i];
-
-                    if (type != 2)
-                    {
-                        Faim -= 5;
-                        if (Faim < 0) Faim = 0;
-                        barreFaim.Value = Faim;
-                    }
-
-                    ResetObjet(i);
-                }
-            }
-        }
-
-        private void ResetObjet(int index)
-        {
-            Image objet = lesObjetsVisuels[index];
-
-            int chance = rnd.Next(0, 100);
-            int type;
-            string nomFichier;
-            string dossier;
-
-            if (chance < 60)
-            {
-                type = 2; // Déchet
-                nomFichier = dechets[rnd.Next(dechets.Length)];
-                dossier = "Déchets";
-                indexSpeciaux[index] = -1;
-            }
-            else if (chance < 85)
-            {
-                type = 0; // Nourriture
-                nomFichier = nourriture[rnd.Next(nourriture.Length)];
-                dossier = "Nourriture";
-                indexSpeciaux[index] = -1;
-            }
-            else
-            {
-                type = 1; // Spécial
-                int indexSpec = rnd.Next(objetSpeciaux.Length);
-                nomFichier = objetSpeciaux[indexSpec];
-                dossier = "Nourriture";
-                indexSpeciaux[index] = indexSpec;
-            }
-
-            typeObjets[index] = type; 
-
-            objet.Source = new BitmapImage(new Uri($"pack://application:,,,/img/{dossier}/{nomFichier}"));
-
-            double maxLeft = canvasJeu.ActualWidth - objet.Width;
-            Canvas.SetLeft(objet, rnd.Next(0, (int)maxLeft));
-            Canvas.SetTop(objet, -rnd.Next(100, 500));
-        }
-
-        
-
-        private void VerifierCollisions()
-        {
-            Rect rectPoisson = new Rect(
-                Canvas.GetLeft(imgPoisson),
-                Canvas.GetTop(imgPoisson),
-                imgPoisson.Width,
-                imgPoisson.Height
-            );
-
-            for (int i = 0; i < lesObjetsVisuels.Length; i++)
-            {
-                Image objet = lesObjetsVisuels[i];
-
-                Rect rectObjet = new Rect(
-                    Canvas.GetLeft(objet),
-                    Canvas.GetTop(objet),
-                   objet.Width,
-                    objet.Height
-              );
-
-                if (rectPoisson.IntersectsWith(rectObjet))
-                {
-                    int type = typeObjets[i]; 
-                    int indexSpec = indexSpeciaux[i]; 
-
-                    if (type == 0)
-                    {
-                        Faim += NiveauDifficulte[MainWindow.NiveauChoisi, 1];
-                        if (Faim > 100) Faim = 100;
-                        barreFaim.Value = Faim;
-                    }
-                    else if (type == 2) 
-                    {
-                        tempsRestant -= NiveauDifficulte[MainWindow.NiveauChoisi, 2];
-                    }
-                    else if (type == 1) // Spécial
-                    {
-                        if (indexSpec == 0) 
-                        {
-                            Faim += NiveauDifficulte[MainWindow.NiveauChoisi, 1]; // Nourriture
-                            if (Faim > 100) Faim = 100;
-                            barreFaim.Value = Faim;
-
-                            score++;
-                            labelScore.Content = $"Score : {score} /{objectif[MainWindow.NiveauChoisi]}";
-                        }
-                        if (indexSpec == 1) 
-                        {
-                            if (boost <= 0)
-                            {
-                                NiveauDifficulte[MainWindow.NiveauChoisi, 0] += NiveauDifficulte[MainWindow.NiveauChoisi, 4];
-                            }
-                            boost = 10;
-                            if (timerBoost != null) timerBoost.Start();
-
-                          /*  NiveauDifficulte[MainWindow.NiveauChoisi, 0] += NiveauDifficulte[MainWindow.NiveauChoisi, 4];
-                            boost = 10;
-                            if (timerBoost != null) timerBoost.Start();*/
-                        }
-                        else if (indexSpec == 2) 
-                        {
-                            Faim -= NiveauDifficulte[MainWindow.NiveauChoisi, 3];
-                            if (Faim < 0) Faim = 0;
-                            barreFaim.Value = Faim;
-                        }
-                    }
-
-                    ResetObjet(i);
-                }
-            }
-        }
-
-       /* private void Perletoucher()
-        {
-            for (int i = 0; i < objectif.Length; i++)
-            {
-                while (score < objectif[i])
-                {
-                    score += 1;
-                    labelScore.Content = $"Score : {score} /{objectif[i]}";
-                }
-            }
-
-        }*/
 
         private void Empoisonner()
         {
@@ -495,39 +355,6 @@ namespace AquaSurvivor
 
 
 
-        /* public void FaimDiminue(object? sender, EventArgs e)
-          {
-              if (tempsRestant > 0)
-              {
-                  tempsRestant--;
-                  labelTemps.Content = $"Temps : {tempsRestant}s";
-              }
-              if (Faim == 0 || tempsRestant == 0)
-              {
-                  timerJeuPrincipal.Stop();
-                  //timerBoost.Stop();
-                  MainWindow.perdu = true;
-
-                  // Appel de la méthode pour afficher l'écran Game Over
-                  MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-                  mainWindow.AfficherGameOver();
-              }
-
-
-                  if (Faim > 0)
-              {
-                  Faim--;
-                  barreFaim.Value = Faim;
-              }
-              else
-              {
-                  timerJeuPrincipal.Stop();
-                  MainWindow.perdu = true;
-
-              }
-
-          }*/
-
         public static void ReinitialiserJeu()
         {
             Faim = 100;
@@ -537,13 +364,7 @@ namespace AquaSurvivor
         }
 
 
-      /*  private void ChargerImage(Image cible, string chemin)
-        {
-
-            string nomFichierImage = $"pack://application:,,,{chemin}.png";
-            cible.Source = new BitmapImage(new Uri(nomFichierImage));
-
-        }*/
+     
         private void ChangerImage(string direction)
         {
 
@@ -561,59 +382,7 @@ namespace AquaSurvivor
 
 
 
-        /*private void DeplacementPoisson(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Right && (Canvas.GetLeft(imgPoisson) + pasPoisson) + imgPoisson.Width < canvasJeu.ActualWidth)
-            {
-                ChargerImage(imgPoisson, $"/img/Poissons/{MainWindow.Perso}Droite");
-                dernierePositionHorizontale = "Droite";
-                Canvas.SetLeft(imgPoisson, Canvas.GetLeft(imgPoisson) + pasPoisson);
-            }
-            // à completer
-#if DEBUG
-#endif
-            if (e.Key == Key.Left && Canvas.GetLeft(imgPoisson) - pasPoisson > 0)
-            {
-                ChargerImage(imgPoisson, $"/img/Poissons/{MainWindow.Perso}Gauche");
-                dernierePositionHorizontale = "Gauche";
-                Canvas.SetLeft(imgPoisson, Canvas.GetLeft(imgPoisson) - pasPoisson);
-            }
-            // à completer
-#if DEBUG
-#endif
-            if (e.Key == Key.Down && (Canvas.GetTop(imgPoisson) + pasPoisson) + imgPoisson.Height < canvasJeu.ActualHeight)
-                if (dernierePositionHorizontale == "Droite")
-                {
-
-                    ChargerImage(imgPoisson, $"/img/Poissons/{MainWindow.Perso}BasDroite");
-                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) + pasPoisson);
-                }
-                else
-                {
-
-                    ChargerImage(imgPoisson, $"/img/Poissons/{MainWindow.Perso}BasGauche");
-                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) + pasPoisson);
-
-                }
-
-#if DEBUG
-#endif
-            if (e.Key == Key.Up && Canvas.GetTop(imgPoisson) - pasPoisson > 0)
-                if (dernierePositionHorizontale == "Droite")
-                {
-                    ChargerImage(imgPoisson, $"/img/Poissons/{MainWindow.Perso}HautDroite");
-                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) - pasPoisson);
-                }
-                else
-                {
-                    ChargerImage(imgPoisson, $"/img/Poissons/{MainWindow.Perso}HautGauche");
-                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) - pasPoisson);
-
-                }
-
-#if DEBUG
-#endif
-        }*/
+       
         private void DeplacementPoisson(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Right && (Canvas.GetLeft(imgPoisson) + NiveauDifficulte[MainWindow.NiveauChoisi, 0]) + imgPoisson.Width < canvasJeu.ActualWidth)
@@ -669,14 +438,7 @@ namespace AquaSurvivor
         }
 
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            Application.Current.MainWindow.KeyDown += DeplacementPoisson;
-            //Application.Current.MainWindow.KeyUp += canvasJeu_KeyUp;
-
-            InitObjets();
-
-        }
+       
 
         private void butPause_Click(object sender, RoutedEventArgs e)
         {
@@ -717,69 +479,6 @@ namespace AquaSurvivor
         {
 
         }
-
-
-       /* private void collision(object sender, RoutedEventArgs e)
-        {
-            Rect rectPoisson = new Rect(Canvas.GetLeft(imgPoisson), Canvas.GetTop(imgPoisson), imgPoisson.Width, imgPoisson.Height);
-            for (int i = 0; i < lesObjets.Length; i++)
-            {
-                Image objet = new Image();
-                Rect rectobjet = new Rect();
-                if (lesObjets[i] == "Nourriture")
-                {
-                    for (int j = 0; j < nourriture.Length; j++)
-                    {
-                        ChargerImage(objet, $"/img/Nourriture/{nourriture[j]}");
-                        rectobjet = new Rect(Canvas.GetLeft(objet), Canvas.GetTop(objet), objet.Width, objet.Height);
-                        if (rectPoisson.IntersectsWith(rectobjet))
-                            Faim += NiveauDifficulte[MainWindow.NiveauChoisi, 1]; //On ajoute des "points" à la faim selon le niveau choisis
-                    }
-                }
-                else if (lesObjets[i] == "Objets Spéciaux")
-                {
-                    for (int k = 0; k < objetSpeciaux.Length; k++)
-                    {
-                        ChargerImage(objet, $"/img/Nourriture/{nourriture[k]}");
-                        rectobjet = new Rect(Canvas.GetLeft(objet), Canvas.GetTop(objet), objet.Width, objet.Height);
-                        if (rectPoisson.IntersectsWith(rectobjet))
-                        {
-                            if (i == 0) // étoile de mer
-                                Perletoucher(); // On ajoute au score +1
-                            else if (i == 1) // boost de vitesse
-                            {
-                                booster = true; // On active le boost de vitesse le poisson va plus vite selon le niveau choisis et on a la barreBoost qui aparraît à l'écran
-                            }
-                            else // Méduse
-                            {
-                                Empoisonner();
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    for (int l = 0; l < objetSpeciaux.Length; l++)
-                    {
-                        ChargerImage(objet, $"/img/Nourriture/{nourriture[l]}");
-                        rectobjet = new Rect(Canvas.GetLeft(objet), Canvas.GetTop(objet), objet.Width, objet.Height);
-                        if (rectPoisson.IntersectsWith(rectobjet)) ;
-                            //timerJeuPrincipal -= NiveauDifficulte[MainWindow.NiveauChoisi, 3]; //On retire du temps selon le niveau choisis
-
-                    }
-
-                }
-
-            }*/
-
-            //}
-
-            //private string typeObjet(Image objet)
-            //{
-            //    string tag;
-            //    tag = objet.Tag.ToString();
-            //    return tag;
-            //}
 
 
 

@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AquaSurvivor"
         mc:Ignorable="d"
-        Title="Menu" Height="308" Width="380" Background="#FF02ACB5">
+        Title="Menu" Height="308" Width="380" Background="#FF02ACB5" ResizeMode="NoResize">
     <Grid>
         <Label FontWeight="Bold" FontSize="18" Content="Vous êtes dans ....." Height="39" VerticalAlignment="Top"/>
         <StackPanel Margin="0,49,0,0" Height="136" VerticalAlignment="Top" >
             <Label Content="OBJECTIFS:  " FontSize="14" FontWeight="Bold"/>
-            <Label Content="1. OBJECTIFS: Attraper 30 perles pour passer à la rivière " FontSize="14" FontWeight="Bold"/>
-            <Label Content="2. OBJECTIFS: Attraper 40 perles pour passer au lac" FontWeight="Bold" FontSize="14"/>
-            <Label Content="3. OBJECTIFS: Attraper 55 perles pour passer à la mer" FontWeight="Bold" FontSize="14"/>
-            <Label Content="4. OBJECTIFS: Attraper 75 perles pour passer à l'océan" FontWeight="Bold" FontSize="14"/>
+            <Label Content="1. OBJECTIFS: Attraper 3 perles pour passer à la rivière " FontSize="14" FontWeight="Bold"/>
+            <Label Content="2. OBJECTIFS: Attraper 5 perles pour passer au lac" FontWeight="Bold" FontSize="14"/>
+            <Label Content="3. OBJECTIFS: Attraper 7 perles pour passer à la mer" FontWeight="Bold" FontSize="14"/>
+            <Label Content="4. OBJECTIFS: Attraper 10 perles pour passer à l'océan" FontWeight="Bold" FontSize="14"/>
         </StackPanel>
         <Button x:Name="butReglesJeu" Content="REGLES DU JEU" Margin="110,197,0,0" VerticalAlignment="Top" Height="34" FontWeight="Bold" Click="butReglesJeu_Click" HorizontalAlignment="Left" Width="160"/>
         <Button x:Name="butReprendre" Content="" Margin="110,236,0,0" Click="butReprendre_Click" HorizontalAlignment="Left" Width="38" Height="29" VerticalAlignment="Top"/>
