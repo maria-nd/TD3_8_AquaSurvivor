@@ -24,24 +24,27 @@ namespace AquaSurvivor
     public partial class UCJeu : UserControl
     {
         public static int Faim { get; set; } = 100;
-        public static int boost { get; set; } = 10;
+        public static int dureeBoostRestante { get; set; } = 10;
         DispatcherTimer timerJeuPrincipal;
         DispatcherTimer timerBoost;
+        DispatcherTimer timerPoison;
         public static int[,] NiveauDifficulte { get; set; } = { { 7, 20, 10, 2, 5, 2, 1, 2 }, { 5, 15, 15, 10, 2, 4, 2, 3 }, { 4, 10, 30, 20, 2, 7, 5, 5 } };
 
-        //déplacement du poisson,     régeneration barre de faim grace à nouritture,      dégât des déchets sur le temps (en seconde ),
-        //dégat de la méduse sur la barre de faim,       Boost (en pas) de l'étoile,      déplacemet déchet (en pas)
-        private static int tempsRestant = 100;
+        // 0 déplacement du poisson,      1 régeneration barre de faim grace à nouritture,      2 dégât des déchets sur le temps (en seconde ),
+        // 3 dégat de la méduse sur la barre de faim,       4 Boost (en pas) de l'étoile,      5 déplacemet déchet (en pas), 6 diminution barre de faim
+        private static int tempsRestant = 300;
         private static int score = 0;
-        private static int [] objectif = [30, 40, 55, 75];
-        private static string dernierePositionHorizontale="";
+        private static int [] objectif = [3, 5, 7, 10];
+        private static string dernierePositionHorizontale=""; 
+        private static bool booster;
+        private static bool estEmpoisonne;
+        private static int dureePoisonRestante = 10;
 
-      
+
 
 
         private Random rnd = new Random();
         private readonly int NB_OBJETS = 15;
-        //private string[,] lesObjets = { { "imgCalamar.png", "imgCrevette.png", "imgPoissonJaune.png", "imgSardine.png", "imgSardine.png", }, { "imgPerle.png", "imgEtoileDeMer.png", "imgMeduse.png", "imgMeduse.png", "imgMeduse.png" }, { "imgBouteille.png", "imgCigare.png", "imgCigarette.png", "imgPoubelle.png", "imgSacPlastique.png" } };
 
         
         private Image[] lesObjetsVisuels;
@@ -53,8 +56,11 @@ namespace AquaSurvivor
         private string[] nourriture = { "imgCalamar.png", "imgCrevette.png", "imgPoissonJaune.png", "imgSardine.png" };
         private string[] objetSpeciaux = { "imgPerle.png", "imgEtoileDeMer.png", "imgMeduse.png" };
         private string[] dechets = { "imgBouteille.png", "imgCigare.png", "imgCigarette.png", "imgPoubelle.png", "imgSacPlastique.png" };
-        private string[] fond = { "imgAquarium.png", "imgRiviere.png", "imgLac.png", "imgMer.png", "imgOcean.png" };
+        private string[] fond = { "imgAquarium.png", "imgRiviere.jpg", "imgLac.jpg", "imgMer.jpg", "imgOcean.jpg" };
+        private int indexFond = 0;
         public  int pasPoisson = NiveauDifficulte[MainWindow.NiveauChoisi, 0];
+        private int dureeBoost = 10;
+        private int indexObjectif = 0;
 
         
         public UCJeu()
@@ -72,26 +78,58 @@ namespace AquaSurvivor
             //jsp si je laisse comme ça
             timerBoost = new DispatcherTimer();
             timerBoost.Interval = TimeSpan.FromSeconds(1);
-            timerBoost.Tick += BoostVitesse;
+            timerBoost.Tick += BoostCompteur;
 
+            timerPoison = new DispatcherTimer();
+            timerPoison.Interval = TimeSpan.FromSeconds(1);
+            timerPoison.Tick +=
            
         }
-  
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private void PoisonCompteur(object? sender, EventArgs e)
         {
-            Application.Current.MainWindow.KeyDown += DeplacementPoisson;
-            //Application.Current.MainWindow.KeyUp += canvasJeu_KeyUp;
 
-            InitObjets();
-            timerJeuPrincipal.Start();
+            if (!estEmpoisonne)
+            {
+                pasPoisson = NiveauDifficulte[MainWindow.NiveauChoisi, 0];
+                timerPoison.Stop();
+                return; // sortir de la méthode et pas éxecuter le reste (pas pertinent de diminuer la dureer si y'a plus de poison)
+            }
+            dureePoisonRestante--;
+            
+            if (dureePoisonRestante <= 0)
+            {
+                estEmpoisonne = false;
+                timerPoison.Stop();
+                barreFaim.Foreground = Brushes.Green; 
+            }
+        }
+
+        private void BoostCompteur(object? sender, EventArgs e)
+        {
+
+            if (!booster)
+            {
+                pasPoisson = NiveauDifficulte[MainWindow.NiveauChoisi, 0];
+                timerBoost.Stop();
+                return;
+            }
+            dureeBoostRestante--;
+            barreBoost.Value = dureeBoostRestante;
+            if (dureeBoostRestante <= 0)
+            {
+                booster = false;
+                timerBoost.Stop();
+
+                pasPoisson = NiveauDifficulte[MainWindow.NiveauChoisi, 0] ; // revenir à la vitesse normale
+                
+                barreBoost.Opacity = 0; // cacher la barre de boost
+            }
         }
 
 
 
-      
 
-       
+
         private void InitObjets()
         {
             lesObjetsVisuels = new Image[NB_OBJETS];
@@ -154,6 +192,18 @@ namespace AquaSurvivor
 
 
        
+
+        private void ActiverBoost()
+        {
+            booster = true;
+            dureeBoostRestante = 10;
+            pasPoisson += NiveauDifficulte[MainWindow.NiveauChoisi, 4]; // augmenter la vitesse du poisson
+            barreBoost.Opacity = 1;// afficher la barre de boost
+            barreBoost.Maximum = 10;
+            barreBoost.Value = 10;
+            timerBoost.Start();
+        }
+
         private void DeplacementObjets()
         {
             if (lesObjetsVisuels == null) return;
@@ -266,78 +316,40 @@ namespace AquaSurvivor
             }
         }
 
-
-     
-
-        /* private void Perletoucher()
-         {
-             for (int i = 0; i < objectif.Length; i++)
-             {
-                 while (score < objectif[i])
-                 {
-                     score += 1;
-                     labelScore.Content = $"Score : {score} /{objectif[i]}";
-                 }
-             }
-
-         }*/
+        private void Perletoucher()
+        {
+            int objectifActuel = objectif[indexObjectif];
+            score += 1;
+            // sécurise l’index
+            if (indexObjectif >= objectif.Length)
+                indexObjectif = objectif.Length - 1;
+            if (score >= objectifActuel && indexObjectif < objectif.Length - 1) // objectif atteint ?
+            {
+                indexObjectif++;              // passe à l’objectif suivant
+                objectifActuel = objectif[indexObjectif];
+                labelScore.Content = $"Score : {score} / {objectifActuel}";
+                tempsRestant += 30; // On ajoute 30sec à chaque fois qu'il atteint un niveau
+                ChangerFond();
+            }
+            labelScore.Content = $"Score : {score} / {objectifActuel}";
+        }
+        private void ChangerFond()
+        {
+            indexFond++;
+            if (indexFond == fond.Length -1) indexFond = fond.Length-1; //sécurise l’index (au cas où il dépasserait la taille du tableau)
+            var fondAMettre = new ImageBrush { ImageSource= new BitmapImage(new Uri($"pack://application:,,,/img/Fonds/{fond[indexFond]}")), Stretch = Stretch.Fill };
+            canvasJeu.Background = fondAMettre;
+        }
 
         private void Empoisonner()
         {
-            Faim -= NiveauDifficulte[MainWindow.NiveauChoisi, 3];
-            barreFaim.Value = Faim;
+            estEmpoisonne = true;
+            dureePoisonRestante = 10; // 10 secondes de poison
+            barreFaim.Foreground = Brushes.GreenYellow; // On modifie la couleur de la barre
+            timerPoison.Start();
         }
-        private void BoostVitesse(bool booster) // J'ai retirer object sender, EventArgs e à  remettre si jamais ca pose problème
-        {
-            barreBoost.Opacity = 1;
-            //NiveauDifficulte[MainWindow.NiveauChoisi, 0] += NiveauDifficulte[MainWindow.NiveauChoisi, 4];
-            if (boost > 0) // Une while serait + approprié ? 
-            while (!booster)
-            {
-                
-                NiveauDifficulte[MainWindow.NiveauChoisi, 0] += NiveauDifficulte[MainWindow.NiveauChoisi, 4];
-                if (boost > 0) // Une while serait + approprié ? 
-                {
-                    boost--;
-                    barreFaim.Value = boost;
-                }
 
-                else
-                {
-                    timerBoost.Stop();
-                    barreBoost.Opacity = 0;
-                    booster = true;
 
-                }
-            }
-
-            else
-            {
-                timerBoost.Stop();
-                barreBoost.Opacity = 0;
-                NiveauDifficulte[MainWindow.NiveauChoisi, 0] = pasPoisson;
-            }
-            
-
-        }
-        private void BoostVitesse(object? sender, EventArgs e) // J'ai retirer object sender, EventArgs e à  remettre si jamais ca pose problème
-        {
-            barreBoost.Opacity = 1;
-            //NiveauDifficulte[MainWindow.NiveauChoisi, 0] += NiveauDifficulte[MainWindow.NiveauChoisi, 4];
-            if (boost > 0) // Une while serait + approprié ? 
-            {
-                boost--;
-                barreFaim.Value = boost;
-            }
-
-            else
-            {
-                timerBoost.Stop();
-                barreBoost.Opacity = 0;
-                NiveauDifficulte[MainWindow.NiveauChoisi, 0] = pasPoisson;
-            }
-
-        }
         //public void ObjectifAtteint()       a mette dans menu 
         //{
 
@@ -373,8 +385,6 @@ namespace AquaSurvivor
 
         }
 
-        private void ChangerDeFond(string nomFond)
-        {
 
         }
         // à completer
@@ -475,10 +485,9 @@ namespace AquaSurvivor
             }
             Application.Current.MainWindow.KeyDown += DeplacementPoisson;
         }
-        private void ChangementFond()
-        {
+       
 
-        }
+        
 
 
 
