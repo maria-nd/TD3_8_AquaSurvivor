@@ -82,7 +82,7 @@ namespace AquaSurvivor
 
             timerPoison = new DispatcherTimer();
             timerPoison.Interval = TimeSpan.FromSeconds(1);
-            timerPoison.Tick +=
+            timerPoison.Tick += PoisonCompteur;
            
         }
         private void PoisonCompteur(object? sender, EventArgs e)
@@ -127,7 +127,14 @@ namespace AquaSurvivor
         }
 
 
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.KeyDown += DeplacementPoisson;
+            //Application.Current.MainWindow.KeyUp += canvasJeu_KeyUp;
 
+            InitObjets();
+            timerJeuPrincipal.Start();
+        }
 
 
         private void InitObjets()
@@ -267,21 +274,15 @@ namespace AquaSurvivor
                 {
                     if (indexSpeciaux[i] == 0)
                     {
-                        score++;
-                        labelScore.Content = $"Score : {score}/{objectif[MainWindow.NiveauChoisi]}";
+                        Perletoucher();
                     }
                     else if (indexSpeciaux[i] == 1)
                     {
-                        boost = 10;
-                        barreBoost.Value = boost;
-                        barreBoost.Opacity = 1;
-                        timerBoost.Start();
+                        ActiverBoost();
                     }
                     else if (indexSpeciaux[i] == 2)
                     {
-                        Faim -= NiveauDifficulte[MainWindow.NiveauChoisi, 3];
-                        if (Faim < 0) Faim = 0;
-                        barreFaim.Value = Faim;
+                       Empoisonner();
                     }
                 }
 
@@ -386,8 +387,7 @@ namespace AquaSurvivor
         }
 
 
-        }
-        // à completer
+        
 
 
 
