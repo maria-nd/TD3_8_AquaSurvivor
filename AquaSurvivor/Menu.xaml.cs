@@ -29,12 +29,7 @@ namespace AquaSurvivor
 
         }
 
-        private void butReprendre_Click(object sender, RoutedEventArgs e)
-        {
-            // la je ferme juste la fenêtre et normalement la MainWindow reprendra toute seule
-            this.Close();
-        }
-<<<<<<< HEAD
+       
         public void AfficherEndroit(int indexFond)
         {
             string texte;
@@ -74,8 +69,12 @@ namespace AquaSurvivor
                 lbl.Foreground = Brushes.Green;
             }
         }
-=======
->>>>>>> 052520fcb65250ff1fb0587c085fc95a577c2a8a
+
+        private void butReprendre_Click(object sender, RoutedEventArgs e)
+        {
+            // la je ferme juste la fenêtre et normalement la MainWindow reprendra toute seule
+            this.Close();
+        }
 
         private void butRejouer_Click(object sender, RoutedEventArgs e)
         {
@@ -93,6 +92,6 @@ namespace AquaSurvivor
             maFenetre.AfficheDemarrage();
         }
 
-     
+
     }
 }

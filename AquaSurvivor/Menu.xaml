@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         Title="Menu" Height="308" Width="380" Background="#FF02ACB5" ResizeMode="NoResize">
     <Grid>
-        <Label FontWeight="Bold" FontSize="18" Content="Vous êtes dans ...." Height="39" VerticalAlignment="Top"/>
+        <Label x:Name="labelEndroit" FontWeight="Bold" FontSize="18" Content="Vous êtes dans ...." Height="39" VerticalAlignment="Top"/>
         <StackPanel Margin="0,49,0,0" Height="136" VerticalAlignment="Top" >
             <Label Content="OBJECTIFS:  " FontSize="14" FontWeight="Bold"/>
-            <Label Content="1. OBJECTIFS: Attraper 3 perles pour passer à la rivière " FontSize="14" FontWeight="Bold"/>
-            <Label Content="2. OBJECTIFS: Attraper 5 perles pour passer au lac" FontWeight="Bold" FontSize="14"/>
-            <Label Content="3. OBJECTIFS: Attraper 7 perles pour passer à la mer" FontWeight="Bold" FontSize="14"/>
-            <Label Content="4. OBJECTIFS: Attraper 10 perles pour passer à l'océan" FontWeight="Bold" FontSize="14"/>
+            <Label x:Name="labelObjectif1" Content="1. OBJECTIFS: Attraper 3 perles pour passer à la rivière " FontSize="14" FontWeight="Bold"/>
+            <Label x:Name="labelObjectif2" Content="2. OBJECTIFS: Attraper 5 perles pour passer au lac" FontWeight="Bold" FontSize="14"/>
+            <Label x:Name="labelObjectif3" Content="3. OBJECTIFS: Attraper 7 perles pour passer à la mer" FontWeight="Bold" FontSize="14"/>
+            <Label x:Name="labelObjectif4" Content="4. OBJECTIFS: Attraper 10 perles pour passer à l'océan" FontWeight="Bold" FontSize="14"/>
         </StackPanel>
         <Button x:Name="butReprendre" Content="&#x25BA;" Margin="63,213,0,0" Click="butReprendre_Click" HorizontalAlignment="Left" Width="62" Height="46" VerticalAlignment="Top" FontFamily="Arial" FontSize="36" Foreground="#FF0958AF"/>
         <Button x:Name="butRejouer"  Content="&#xE149;" HorizontalAlignment="Center" Margin="0,213,0,0" VerticalAlignment="Top" Width="62" Height="46" Click="butRejouer_Click" FontFamily="Segoe MDL2 Assets" FontSize="36" Foreground="#FF0958AF"/>
