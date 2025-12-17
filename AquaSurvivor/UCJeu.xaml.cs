@@ -39,10 +39,6 @@ namespace AquaSurvivor
         private static bool booster;
         private static bool estEmpoisonne;
         private static int dureePoisonRestante = 10;
-
-
-
-
         private Random rnd = new Random();
         private readonly int NB_OBJETS = 15;
 
@@ -157,48 +153,42 @@ namespace AquaSurvivor
         }
         private void ResetObjet(int index)
         {
-            int chance = rnd.Next(100);
-            int type;
-            string fichier;
-            string dossier;
+            int chance = rnd.Next(0, 100);
 
             if (chance < 60)
             {
-                type = 2; // Déchet
-                fichier = dechets[rnd.Next(dechets.Length)];
-                dossier = "Déchets";
-                indexSpeciaux[index] = -1;
+                // CAS DECHET
+                typeObjets[index] = 2;
+                int i = rnd.Next(0, dechets.Length);
+
+                string chemin = "pack://application:,,,/img/Déchets/" + dechets[i];
+                lesObjetsVisuels[index].Source = new BitmapImage(new Uri(chemin));
             }
             else if (chance < 85)
             {
-                type = 0; // Nourriture
-                fichier = nourriture[rnd.Next(nourriture.Length)];
-                dossier = "Nourriture";
-                indexSpeciaux[index] = -1;
+                // CAS NOURRITURE
+                typeObjets[index] = 0;
+                int i = rnd.Next(0, nourriture.Length);
+
+                string chemin = "pack://application:,,,/img/Nourriture/" + nourriture[i];
+                lesObjetsVisuels[index].Source = new BitmapImage(new Uri(chemin));
             }
             else
             {
-                type = 1; // Spécial
-                int spec = rnd.Next(objetSpeciaux.Length);
-                fichier = objetSpeciaux[spec];
-                dossier = "Nourriture";
-                indexSpeciaux[index] = spec;
+                // CAS SPECIAL
+                typeObjets[index] = 1;
+                int i = rnd.Next(0, objetSpeciaux.Length);
+                indexSpeciaux[index] = i;
+
+                string chemin = "pack://application:,,,/img/Nourriture/" + objetSpeciaux[i];
+                lesObjetsVisuels[index].Source = new BitmapImage(new Uri(chemin));
             }
-
-            typeObjets[index] = type;
-
-            lesObjetsVisuels[index].Source =
-                new BitmapImage(new Uri($"pack://application:,,,/img/{dossier}/{fichier}"));
 
             double maxLeft = canvasJeu.ActualWidth - 50;
             Canvas.SetLeft(lesObjetsVisuels[index], rnd.Next(0, (int)maxLeft));
             Canvas.SetTop(lesObjetsVisuels[index], -rnd.Next(100, 800));
         }
 
-
-
-
-       
 
         private void ActiverBoost()
         {
@@ -239,54 +229,51 @@ namespace AquaSurvivor
         }
         private void VerifierCollisions()
         {
-            double pLeft = Canvas.GetLeft(imgPoisson);
-            double pTop = Canvas.GetTop(imgPoisson);
-
-            if (double.IsNaN(pLeft) || double.IsNaN(pTop)) return;
-
-            Rect rectPoisson = new Rect(pLeft, pTop, imgPoisson.Width, imgPoisson.Height);
+            Rect rectPoisson = new Rect(Canvas.GetLeft(imgPoisson), Canvas.GetTop(imgPoisson), imgPoisson.Width, imgPoisson.Height);
 
             for (int i = 0; i < lesObjetsVisuels.Length; i++)
             {
-                Image obj = lesObjetsVisuels[i];
-                if (obj == null) continue;
+                Image objetActuel = lesObjetsVisuels[i];
 
-                double oLeft = Canvas.GetLeft(obj);
-                double oTop = Canvas.GetTop(obj);
+                Rect rectObjet = new Rect(Canvas.GetLeft(objetActuel), Canvas.GetTop(objetActuel), objetActuel.Width, objetActuel.Height);
 
-                if (double.IsNaN(oLeft) || double.IsNaN(oTop)) continue;
-
-                Rect rectObj = new Rect(oLeft, oTop, obj.Width, obj.Height);
-
-                if (!rectPoisson.IntersectsWith(rectObj)) continue;
-
-                if (typeObjets[i] == 0)
+                if (rectPoisson.IntersectsWith(rectObjet))
                 {
-                    Faim += NiveauDifficulte[MainWindow.NiveauChoisi, 1];
-                    if (Faim > 100) Faim = 100;
-                    barreFaim.Value = Faim;
-                }
-                else if (typeObjets[i] == 2)
-                {
-                    tempsRestant -= NiveauDifficulte[MainWindow.NiveauChoisi, 2];
-                }
-                else
-                {
-                    if (indexSpeciaux[i] == 0)
+                    
+                    if (typeObjets[i] == 0)
                     {
-                        Perletoucher();
+                        Faim = Faim + NiveauDifficulte[MainWindow.NiveauChoisi, 1];
+                        if (Faim > 100)
+                        {
+                            Faim = 100;
+                        }
+                        barreFaim.Value = Faim;
                     }
-                    else if (indexSpeciaux[i] == 1)
-                    {
-                        ActiverBoost();
-                    }
-                    else if (indexSpeciaux[i] == 2)
-                    {
-                       Empoisonner();
-                    }
-                }
 
-                ResetObjet(i);
+                    else if (typeObjets[i] == 2)
+                    {
+                        tempsRestant = tempsRestant - NiveauDifficulte[MainWindow.NiveauChoisi, 2];
+                    }
+
+                    else if (typeObjets[i] == 1)
+                    {
+                        if (indexSpeciaux[i] == 0)
+                        {
+                            Perletoucher();
+                        }
+                        else if (indexSpeciaux[i] == 1)
+                        {
+                            ActiverBoost();
+                        }
+                        else if (indexSpeciaux[i] == 2)
+                        {
+                            Empoisonner();
+                        }
+                    }
+
+                    ResetObjet(i);
+
+                }
             }
         }
         private void JeuCompteur(object sender, EventArgs e)
@@ -320,6 +307,7 @@ namespace AquaSurvivor
         private void Perletoucher()
         {
             int objectifActuel = objectif[indexObjectif];
+            int objectifFinal = objectif[objectif.Length - 1];
             score += 1;
             // sécurise l’index
             if (indexObjectif >= objectif.Length)
@@ -331,6 +319,13 @@ namespace AquaSurvivor
                 labelScore.Content = $"Score : {score} / {objectifActuel}";
                 tempsRestant += 30; // On ajoute 30sec à chaque fois qu'il atteint un niveau
                 ChangerFond();
+            }
+            if (score >= objectifFinal)
+            {
+                timerJeuPrincipal.Stop();
+          
+                MainWindow FenetrePrincipale = (MainWindow)Application.Current.MainWindow;
+                FenetrePrincipale.AfficherVictoire();
             }
             labelScore.Content = $"Score : {score} / {objectifActuel}";
         }
@@ -366,18 +361,15 @@ namespace AquaSurvivor
         //}
 
 
-
-
         public static void ReinitialiserJeu()
         {
             Faim = 100;
-            tempsRestant = 60;
+            tempsRestant = 300;
             score = 0;
             MainWindow.perdu = false;
+
         }
-
-
-     
+             
         private void ChangerImage(string direction)
         {
 
@@ -385,14 +377,7 @@ namespace AquaSurvivor
             imgPoisson.Source = new BitmapImage(new Uri(nomFichierImage));
 
         }
-
-
-        
-
-
-
-
-       
+               
         private void DeplacementPoisson(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Right && (Canvas.GetLeft(imgPoisson) + NiveauDifficulte[MainWindow.NiveauChoisi, 0]) + imgPoisson.Width < canvasJeu.ActualWidth)
@@ -471,26 +456,30 @@ namespace AquaSurvivor
 
         public void ReprendreJeu()
         {
-            if (barreFaim != null)
-            {
-                barreFaim.Value = Faim;
-            }
             if (timerJeuPrincipal != null)
             {
                 timerJeuPrincipal.Start();
             }
-            if (timerBoost != null)
+
+            if (timerBoost != null && booster == true)
             {
                 timerBoost.Start();
             }
+
+            if (timerPoison != null && estEmpoisonne == true)
+            {
+                timerPoison.Start();
+            }
+
+            this.Focus();
+
+            // On ré-attache le clavier par sécurité
+            Application.Current.MainWindow.KeyDown -= DeplacementPoisson;
             Application.Current.MainWindow.KeyDown += DeplacementPoisson;
         }
+
        
-
-        
-
-
-
-        }
+  
+    }
     }
 

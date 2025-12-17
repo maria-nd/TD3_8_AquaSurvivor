@@ -26,43 +26,28 @@ namespace AquaSurvivor
 
         }
 
-        private void butReglesJeu_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-
-            this.Close();
-
-            mainWindow.AfficherReglesJeu(sender, e);
-        }
-
         private void butReprendre_Click(object sender, RoutedEventArgs e)
         {
-           
-
-            this.Close(); 
+            // la je ferme juste la fenêtre et normalement la MainWindow reprendra toute seule
+            this.Close();
         }
-      
+
         private void butRejouer_Click(object sender, RoutedEventArgs e)
         {
             UCJeu.ReinitialiserJeu();
-
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            MainWindow maFenetre = (MainWindow)Application.Current.MainWindow;
             this.Close();
-
-            mainWindow.AfficherChoixPoisson(sender, e);
+            maFenetre.AfficherChoixPoisson(sender, e);
         }
 
         private void butQuitterPartie_Click(object sender, RoutedEventArgs e)
         {
-            UCJeu.ReinitialiserJeu();
-
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-
+            //UCJeu.ReinitialiserJeu();
+            MainWindow maFenetre = (MainWindow)Application.Current.MainWindow;
             this.Close();
-
-            mainWindow.AfficheDemarrage();
+            maFenetre.AfficheDemarrage();
         }
 
-      
+     
     }
 }

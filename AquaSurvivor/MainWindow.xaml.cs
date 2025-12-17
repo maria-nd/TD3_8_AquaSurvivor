@@ -21,8 +21,9 @@ namespace AquaSurvivor
         
         public static bool perdu { get; set; } = false;
 
-        private UCJeu JeuEnCours = null;
-        public static bool RevenirAuJeuDepuisRegles { get; set; } = false;
+        //public static UCJeu JeuEnCours { get; set; } = null; 
+        //private UCJeu sauvegardeJeu;
+       //public static bool RevenirAuJeuDepuisRegles { get; set; } = false;
 
         public static int  NiveauChoisi { get; set; }
 
@@ -30,9 +31,7 @@ namespace AquaSurvivor
         public MainWindow()
         {
             InitializeComponent();
-            AfficheDemarrage();
-           
-
+            AfficheDemarrage();          
         }
         public void AfficheDemarrage()
         {
@@ -49,7 +48,7 @@ namespace AquaSurvivor
             uc.but_Continuer.Click += butContinuer_Click;
 
         }
-        public void butContinuer_Click(object sender, RoutedEventArgs e)
+        /*public void butContinuer_Click(object sender, RoutedEventArgs e)
         {
             if (MainWindow.RevenirAuJeuDepuisRegles)
             {
@@ -64,15 +63,16 @@ namespace AquaSurvivor
             }
             else
             {
-                JeuEnCours = null;
+                //JeuEnCours = null;
                 AfficherChoixPoisson(sender, e);
             }
 
+        }*/
+
+        public void butContinuer_Click(object sender, RoutedEventArgs e)
+        {
+            AfficherChoixPoisson(sender, e);
         }
-
-
-
-
 
         public void AfficherChoixPoisson(object sender, RoutedEventArgs e)
         {
@@ -81,59 +81,32 @@ namespace AquaSurvivor
             uc.butSuivant.Click += AfficherNiveauDifficulte;
         }
 
-
-
         private void AfficherNiveauDifficulte(object sender, RoutedEventArgs e)
         {
             UCNiveauDifficulte uc = new UCNiveauDifficulte();
             ZoneJeu.Content = uc;
             uc.butSuivant.Click += AfficherJeu;
         }
+  
         private void AfficherJeu(object sender, RoutedEventArgs e)
         {
-            JeuEnCours = new UCJeu();
-            ZoneJeu.Content = JeuEnCours;
-            JeuEnCours.butPause.Click += AfficherMenu;
-
+            UCJeu uc = new UCJeu(); 
+            ZoneJeu.Content = uc;
+            uc.butPause.Click += AfficherMenu;
         }
-
-    
 
         private void AfficherMenu(object sender, RoutedEventArgs e)
         {
-            if (ZoneJeu.Content is UCJeu ucJeuActuel)
-            {
-                ucJeuActuel.MettreEnPause();
+            UCJeu jeuActuel = (UCJeu)ZoneJeu.Content;
+            jeuActuel.MettreEnPause();
 
-                Menu fen = new Menu();
-                fen.Owner = this;
-                fen.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            Menu fen = new Menu();
+            fen.Owner = this;
+            fen.WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
-                fen.butReglesJeu.Click += ReglesDuMenu_Click;
+            fen.ShowDialog();
 
-                fen.butReprendre.Click += (s, args) =>
-                {
-                    fen.Close();
-
-                    if (JeuEnCours != null)
-                    {
-                        JeuEnCours.ReprendreJeu();
-                    }
-                };
-
-                fen.ShowDialog();
-
-            }
-        }
-
-        private void ReglesDuMenu_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow.RevenirAuJeuDepuisRegles = true;
-
-            Window menuWindow = Window.GetWindow(sender as DependencyObject);
-            menuWindow.Close();
-
-            AfficherReglesJeu(sender, e);
+            jeuActuel.ReprendreJeu();
         }
 
         public void AfficherGameOver()
@@ -146,8 +119,16 @@ namespace AquaSurvivor
             uc.butRetenter.Click += AfficherChoixPoisson;
             uc.butQuitter.Click += QuitterJeu;
 
+        }
 
+        public void AfficherVictoire()
+        {
+            UCWin uc = new UCWin();
 
+            ZoneJeu.Content = uc;
+
+            uc.butRejouer.Click += AfficherChoixPoisson;
+            uc.butQuitter.Click += QuitterJeu;
         }
         private void QuitterJeu(object sender, RoutedEventArgs e)
         {

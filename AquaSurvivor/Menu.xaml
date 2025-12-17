@@ -15,10 +15,9 @@
             <Label Content="3. OBJECTIFS: Attraper 7 perles pour passer à la mer" FontWeight="Bold" FontSize="14"/>
             <Label Content="4. OBJECTIFS: Attraper 10 perles pour passer à l'océan" FontWeight="Bold" FontSize="14"/>
         </StackPanel>
-        <Button x:Name="butReglesJeu" Content="REGLES DU JEU" Margin="110,197,0,0" VerticalAlignment="Top" Height="34" FontWeight="Bold" Click="butReglesJeu_Click" HorizontalAlignment="Left" Width="160"/>
-        <Button x:Name="butReprendre" Content="" Margin="110,236,0,0" Click="butReprendre_Click" HorizontalAlignment="Left" Width="38" Height="29" VerticalAlignment="Top"/>
-        <Button x:Name="butRejouer" Content="" HorizontalAlignment="Left" Margin="171,236,0,0" VerticalAlignment="Top" Height="29" Width="38" Click="butRejouer_Click"/>
-        <Button x:Name="butQuitterPartie" Content="" Margin="232,236,0,0" VerticalAlignment="Top" Height="29" Click="butQuitterPartie_Click" HorizontalAlignment="Left" Width="38"/>
+        <Button x:Name="butReprendre" Content="&#x25BA;" Margin="63,213,0,0" Click="butReprendre_Click" HorizontalAlignment="Left" Width="62" Height="46" VerticalAlignment="Top" FontFamily="Arial" FontSize="36" Foreground="#FF0958AF"/>
+        <Button x:Name="butRejouer"  Content="&#xE149;" HorizontalAlignment="Center" Margin="0,213,0,0" VerticalAlignment="Top" Width="62" Height="46" Click="butRejouer_Click" FontFamily="Segoe MDL2 Assets" FontSize="36" Foreground="#FF0958AF"/>
+        <Button x:Name="butQuitterPartie" Content="&#xF78A;" Margin="252,213,0,0" VerticalAlignment="Top" Width="62" Height="46" Click="butQuitterPartie_Click" HorizontalAlignment="Left" FontSize="36" FontFamily="Segoe MDL2 Assets"  Background="#FFFD1A1A" Foreground="White"/>
 
 
     </Grid>
