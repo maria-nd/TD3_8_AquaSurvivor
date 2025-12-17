@@ -26,6 +26,7 @@
     <None Remove="img\Fonds\imgMer.jpg" />
     <None Remove="img\Fonds\imgOcean.jpg" />
     <None Remove="img\Fonds\imgRiviere.jpg" />
+    <None Remove="img\logo.png" />
     <None Remove="img\Nourriture\imgCalamar.png" />
     <None Remove="img\Nourriture\imgCrevette.png" />
     <None Remove="img\Nourriture\imgEtoileDeMer.png" />
@@ -109,6 +110,7 @@
     <Resource Include="img\Fonds\imgMer.jpg" />
     <Resource Include="img\Fonds\imgOcean.jpg" />
     <Resource Include="img\Fonds\imgRiviere.jpg" />
+    <Resource Include="img\logo.png" />
     <Resource Include="img\Nourriture\imgCalamar.png" />
     <Resource Include="img\Nourriture\imgCrevette.png" />
     <Resource Include="img\Nourriture\imgEtoileDeMer.png" />
