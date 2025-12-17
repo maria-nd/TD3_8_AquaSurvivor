@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,11 @@ namespace AquaSurvivor
     /// </summary>
     public partial class Menu : Window
     {
+
         public Menu()
         {
             InitializeComponent();
+            
             
 
         }
@@ -41,7 +44,46 @@ namespace AquaSurvivor
 
             this.Close(); 
         }
-      
+        public void AfficherEndroit(int indexFond)
+        {
+            string texte;
+            switch (indexFond)
+            {
+                case 1:
+                    texte = "la Rivière";
+                    break;
+                case 2:
+                    texte = "le Lac";
+                    break;
+                case 3:
+                    texte = "la Mer";
+                    break;
+                case 4:
+                    texte = " l'Océan";
+                    break;
+                default:
+                    texte = "Inconnu";
+                    break;
+            }
+            labelEndroit.Content = $"Vous êtes dans {texte}";
+        }
+        public void AfficherObjectifAtteint(int numero)
+        {
+            Label lbl= null;
+            switch (numero)
+            {
+                case 1: lbl = labelObjectif1; break;
+                case 2: lbl = labelObjectif2; break;
+                case 3: lbl = labelObjectif3; break;
+                case 4: lbl = labelObjectif4; break;
+            }
+            if (lbl != null)
+            {
+                lbl.Content = $"Objectif {numero} : atteint";
+                lbl.Foreground = Brushes.Green;
+            }
+        }
+
         private void butRejouer_Click(object sender, RoutedEventArgs e)
         {
             UCJeu.ReinitialiserJeu();
