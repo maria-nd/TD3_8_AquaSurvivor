@@ -40,14 +40,11 @@ namespace AquaSurvivor
         private static bool booster;
         private static bool estEmpoisonne;
         private static int dureePoisonRestante = 10;
-<<<<<<< HEAD
         public static int indexFond =0 ;
         public static int score = 0;
 
 
 
-=======
->>>>>>> 052520fcb65250ff1fb0587c085fc95a577c2a8a
         private Random rnd = new Random();
         private readonly int NB_OBJETS = 15;
 
@@ -119,7 +116,6 @@ namespace AquaSurvivor
                 return;
             }
             dureeBoostRestante--;
-            
             barreBoost.Value = dureeBoostRestante;
             if (dureeBoostRestante <= 0)
             {
@@ -247,55 +243,33 @@ namespace AquaSurvivor
 
                 Rect rectObjet = new Rect(Canvas.GetLeft(objetActuel), Canvas.GetTop(objetActuel), objetActuel.Width, objetActuel.Height);
 
-                if (rectPoisson.IntersectsWith(rectObjet))
+                if (!rectPoisson.IntersectsWith(rectObj)) continue;
+
+                if (typeObjets[i] == 0)
                 {
-<<<<<<< HEAD
                     Faim += NiveauDifficulte[MainWindow.NiveauChoisi, 1];
                     if (Faim > 100) Faim = 100;
                     barreFaim.Value = Faim;
-                    estEmpoisonne = false;
                 }
                 else if (typeObjets[i] == 2)
                 {
-                    tempsRestant -= NiveauDifficulte[MainWindow.NiveauChoisi, 2]; //collision avec déchets
-                    booster = false;
+                    tempsRestant -= NiveauDifficulte[MainWindow.NiveauChoisi, 2];
                 }
                 else
                 {
                     if (indexSpeciaux[i] == 0)
-=======
-                    
-                    if (typeObjets[i] == 0)
->>>>>>> 052520fcb65250ff1fb0587c085fc95a577c2a8a
                     {
-                        Faim = Faim + NiveauDifficulte[MainWindow.NiveauChoisi, 1];
-                        if (Faim > 100)
-                        {
-                            Faim = 100;
-                        }
-                        barreFaim.Value = Faim;
+                        Perletoucher();
                     }
-
-                    else if (typeObjets[i] == 2)
+                    else if (indexSpeciaux[i] == 1)
                     {
-                        tempsRestant = tempsRestant - NiveauDifficulte[MainWindow.NiveauChoisi, 2];
+                        ActiverBoost();
                     }
-
-                    else if (typeObjets[i] == 1)
+                    else if (indexSpeciaux[i] == 2)
                     {
-                        if (indexSpeciaux[i] == 0)
-                        {
-                            Perletoucher();
-                        }
-                        else if (indexSpeciaux[i] == 1)
-                        {
-                            ActiverBoost();
-                        }
-                        else if (indexSpeciaux[i] == 2)
-                        {
-                            Empoisonner();
-                        }
+                       Empoisonner();
                     }
+                }
 
                     ResetObjet(i);
 
