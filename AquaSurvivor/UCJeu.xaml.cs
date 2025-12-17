@@ -23,6 +23,7 @@ namespace AquaSurvivor
     /// </summary>
     public partial class UCJeu : UserControl
     {
+        public MainWindow currentMainWindow = (MainWindow)Application.Current.MainWindow;
         public static int Faim { get; set; } = 100;
         public static int dureeBoostRestante { get; set; } = 10;
         DispatcherTimer timerJeuPrincipal;
@@ -57,8 +58,9 @@ namespace AquaSurvivor
         public  int pasPoisson = NiveauDifficulte[MainWindow.NiveauChoisi, 0];
         private int dureeBoost = 10;
         private int indexObjectif = 0;
+        private static int faimDimnue = 1;
 
-        
+
         public UCJeu()
         {
             InitializeComponent();
@@ -88,15 +90,16 @@ namespace AquaSurvivor
             {
                 pasPoisson = NiveauDifficulte[MainWindow.NiveauChoisi, 0];
                 timerPoison.Stop();
+                barreFaim.Foreground = Brushes.Green;
                 return; // sortir de la méthode et pas éxecuter le reste (pas pertinent de diminuer la dureer si y'a plus de poison)
             }
             dureePoisonRestante--;
-            
+            barreFaim.Value -= NiveauDifficulte[MainWindow.NiveauChoisi, 3];
             if (dureePoisonRestante <= 0)
             {
                 estEmpoisonne = false;
                 timerPoison.Stop();
-                barreFaim.Foreground = Brushes.Green; 
+                barreFaim.Foreground = Brushes.Green;
             }
         }
 
@@ -107,20 +110,24 @@ namespace AquaSurvivor
             {
                 pasPoisson = NiveauDifficulte[MainWindow.NiveauChoisi, 0];
                 timerBoost.Stop();
+                barreBoost.Opacity = 0;
                 return;
             }
             dureeBoostRestante--;
+            //pasPoisson += NiveauDifficulte[MainWindow.NiveauChoisi, 4];
             barreBoost.Value = dureeBoostRestante;
             if (dureeBoostRestante <= 0)
             {
                 booster = false;
                 timerBoost.Stop();
 
-                pasPoisson = NiveauDifficulte[MainWindow.NiveauChoisi, 0] ; // revenir à la vitesse normale
-                
+                pasPoisson = NiveauDifficulte[MainWindow.NiveauChoisi, 0]; // revenir à la vitesse normale
+
                 barreBoost.Opacity = 0; // cacher la barre de boost
             }
         }
+
+
 
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -200,6 +207,7 @@ namespace AquaSurvivor
             barreBoost.Value = 10;
             timerBoost.Start();
         }
+
 
         private void DeplacementObjets()
         {
@@ -282,7 +290,7 @@ namespace AquaSurvivor
 
             if (compteur * 50 >= 1000)
             {
-                Faim--;
+                Faim-=faimDimnue;
                 if (Faim < 0) Faim = 0;
                 barreFaim.Value = Faim;
 
@@ -314,6 +322,7 @@ namespace AquaSurvivor
                 indexObjectif = objectif.Length - 1;
             if (score >= objectifActuel && indexObjectif < objectif.Length - 1) // objectif atteint ?
             {
+                //currentMainWindow.FenMenu.AfficherObjectifAtteint(indexObjectif + 1);
                 indexObjectif++;              // passe à l’objectif suivant
                 objectifActuel = objectif[indexObjectif];
                 labelScore.Content = $"Score : {score} / {objectifActuel}";
@@ -335,30 +344,17 @@ namespace AquaSurvivor
             if (indexFond == fond.Length -1) indexFond = fond.Length-1; //sécurise l’index (au cas où il dépasserait la taille du tableau)
             var fondAMettre = new ImageBrush { ImageSource= new BitmapImage(new Uri($"pack://application:,,,/img/Fonds/{fond[indexFond]}")), Stretch = Stretch.Fill };
             canvasJeu.Background = fondAMettre;
-        }
+            //currentMainWindow.FenMenu.AfficherEndroit(indexFond+1);
 
+        }
         private void Empoisonner()
         {
             estEmpoisonne = true;
             dureePoisonRestante = 10; // 10 secondes de poison
             barreFaim.Foreground = Brushes.GreenYellow; // On modifie la couleur de la barre
+            faimDimnue = NiveauDifficulte[MainWindow.NiveauChoisi, 3];
             timerPoison.Start();
         }
-
-
-        //public void ObjectifAtteint()       a mette dans menu 
-        //{
-
-
-        //public void ObjectifAtteint()       a mette dans menu 
-        //{
-
-        //}
-
-        //public void Endroitactuel()       a mette dans menu 
-        //{
-
-        //}
 
 
         public static void ReinitialiserJeu()
@@ -380,56 +376,52 @@ namespace AquaSurvivor
                
         private void DeplacementPoisson(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Right && (Canvas.GetLeft(imgPoisson) + NiveauDifficulte[MainWindow.NiveauChoisi, 0]) + imgPoisson.Width < canvasJeu.ActualWidth)
+            if (e.Key == Key.Right && (Canvas.GetLeft(imgPoisson) + pasPoisson) + imgPoisson.Width < canvasJeu.ActualWidth)
             {
                 ChangerImage("Droite");
                 dernierePositionHorizontale = "Droite";
-                Canvas.SetLeft(imgPoisson, Canvas.GetLeft(imgPoisson) + NiveauDifficulte[MainWindow.NiveauChoisi, 0]);
+                Canvas.SetLeft(imgPoisson, Canvas.GetLeft(imgPoisson) + pasPoisson);
             }
-            // à completer
+ 
 #if DEBUG
+            Console.WriteLine(dernierePositionHorizontale);
+            Console.WriteLine(Canvas.GetLeft(imgPoisson) +" "+ Canvas.GetRight(imgPoisson));
 #endif
-            if (e.Key == Key.Left && Canvas.GetLeft(imgPoisson) - NiveauDifficulte[MainWindow.NiveauChoisi, 0] > 0)
+            if (e.Key == Key.Left && Canvas.GetLeft(imgPoisson) - pasPoisson > 0)
             {
                 ChangerImage("Gauche");
                 dernierePositionHorizontale = "Gauche";
-                Canvas.SetLeft(imgPoisson, Canvas.GetLeft(imgPoisson) - NiveauDifficulte[MainWindow.NiveauChoisi, 0]);
+                Canvas.SetLeft(imgPoisson, Canvas.GetLeft(imgPoisson) - pasPoisson);
             }
-            // à completer
-#if DEBUG
-#endif
-            if (e.Key == Key.Down && (Canvas.GetTop(imgPoisson) + NiveauDifficulte[MainWindow.NiveauChoisi, 0]) + imgPoisson.Height < canvasJeu.ActualHeight)
+            
+
+            if (e.Key == Key.Down && (Canvas.GetTop(imgPoisson) + pasPoisson) + imgPoisson.Height < canvasJeu.ActualHeight)
                 if (dernierePositionHorizontale == "Droite")
                 {
 
                     ChangerImage("BasDroite");
-                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) + NiveauDifficulte[MainWindow.NiveauChoisi, 0]);
+                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) + pasPoisson);
                 }
                 else
                 {
 
                     ChangerImage("BasGauche");
-                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) + NiveauDifficulte[MainWindow.NiveauChoisi, 0]);
+                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) + pasPoisson);
 
                 }
 
-#if DEBUG
-#endif
-            if (e.Key == Key.Up && Canvas.GetTop(imgPoisson) - NiveauDifficulte[MainWindow.NiveauChoisi, 0] > 0)
+            if (e.Key == Key.Up && Canvas.GetTop(imgPoisson) - pasPoisson > 0)
                 if (dernierePositionHorizontale == "Droite")
                 {
                     ChangerImage("HautDroite");
-                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) - NiveauDifficulte[MainWindow.NiveauChoisi, 0]);
+                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) - pasPoisson);
                 }
                 else
                 {
                     ChangerImage("HautGauche");
-                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) - NiveauDifficulte[MainWindow.NiveauChoisi, 0]);
+                    Canvas.SetTop(imgPoisson, Canvas.GetTop(imgPoisson) - pasPoisson);
 
                 }
-
-#if DEBUG
-#endif
         }
 
 

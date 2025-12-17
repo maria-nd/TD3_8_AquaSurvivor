@@ -27,11 +27,15 @@ namespace AquaSurvivor
 
         public static int  NiveauChoisi { get; set; }
 
+        public Menu FenMenu { get; set; }
+
 
         public MainWindow()
         {
             InitializeComponent();
-            AfficheDemarrage();          
+            AfficheDemarrage();
+
+            FenMenu = new Menu();
         }
         public void AfficheDemarrage()
         {
@@ -100,11 +104,10 @@ namespace AquaSurvivor
             UCJeu jeuActuel = (UCJeu)ZoneJeu.Content;
             jeuActuel.MettreEnPause();
 
-            Menu fen = new Menu();
-            fen.Owner = this;
-            fen.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            FenMenu.Owner = this;
+            FenMenu.WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
-            fen.ShowDialog();
+            FenMenu.ShowDialog();
 
             jeuActuel.ReprendreJeu();
         }
