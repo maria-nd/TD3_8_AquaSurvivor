@@ -8,8 +8,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Label x:Name="labObjectifAtteint" Content="Vous avez atteint votre objectif" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="130" Width="800" Background="#FF4FBCBF" FontSize="48" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Button x:Name="butRetenter" Content="RETENTER" HorizontalAlignment="Left" Margin="165,326,0,0" VerticalAlignment="Top" Height="83" Width="183" FontWeight="Bold" FontSize="36" Click="butRetenter_Click"/>
-        <Button x:Name="but_Quitter" Content="QUITTER" HorizontalAlignment="Left" Margin="452,326,0,0" VerticalAlignment="Top" Height="83" Width="183" FontWeight="Bold" FontSize="36" Click="but_Quitter_Click"/>
+        <Button x:Name="butRejouer" Content="REJOUER" HorizontalAlignment="Left" Margin="165,326,0,0" VerticalAlignment="Top" Height="83" Width="183" FontWeight="Bold" FontSize="36" Click="butRejouer_Click"/>
+        <Button x:Name="butQuitter" Content="QUITTER" HorizontalAlignment="Left" Margin="452,326,0,0" VerticalAlignment="Top" Height="83" Width="183" FontWeight="Bold" FontSize="36" Click="butQuitter_Click"/>
 
     </Grid>
 </UserControl>
